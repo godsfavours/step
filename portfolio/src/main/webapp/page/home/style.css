@@ -1,15 +1,15 @@
 .main-info-section {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-  height: 92vh;
+  height: 80vh;
 }
 
-.main-links {
-  display: flex;
+.text {
+
   margin: auto;
-  align-items: center;
+   
   
 }
 
@@ -30,7 +30,23 @@ span.name {
   color: #fff;
   letter-spacing: 3px;
   word-spacing: 10px;
-  font-size: .8rem;
+  font-size: 16px;
 }
 
+.external-links {
+  list-style: none;
+}
 
+.external-links li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.external-links li a {
+  transition: all 0.3 ease 0s;
+}
+
+.external-links li a:hover,
+.logo:hover {
+  color: #0088a9
+}
