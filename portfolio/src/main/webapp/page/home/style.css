@@ -7,7 +7,7 @@
 }
 
 .text {
-
+  cursor: default;
   margin: auto;
    
   
@@ -26,6 +26,13 @@ span.name {
   color: #0088a9;
 }
 
+span.name:hover {
+  color: #fff;
+}
+
+span.letter:hover {
+  color: #0088a9;
+}
 .text p {
   color: #fff;
   letter-spacing: 3px;
