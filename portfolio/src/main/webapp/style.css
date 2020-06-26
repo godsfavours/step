@@ -6,6 +6,10 @@
   font-family: "Montserrat", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 li, a {
   font-weight: 500;
   font-size: 16px;
@@ -48,61 +52,42 @@ nav {
   color: #0088a9
 }
 
-/* mobile compatibility for navbar*/
-/* burger is the the dashed lines for mobile */
-.burger {
-  display: none;
-  cursor: pointer;
+
+.main-info-section {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  align-items: center;
 }
 
-.burger div {
-  width: 25px;
-  height: 2px;
-  background-color: #edf0f1;
-  margin: 5px;
-
+.text {
+  flex: 0.5;
+  margin-top: 50px;
+  margin-left: 200px;
+}
+.text h1 {
+  color: #fff;
+  font-size: 60px;
 }
 
-/* when it hits 768 px all across */
-@media screen and (max-width: 768px) {
-  body {
-    overflow-x: hidden; /* disallow scrolling past x-boundary*/
-  }
-  .nav-links {
-    position: absolute;
-    right: 0px;
-    height: 50vh;
-    top: 10vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    transform: translateX(100%); /* take side bar off page */
-    transition: transform 0.5s ease-in;
-  }
-
-  .nav-links li {
-    opacity: 0;
-  }
-
-  .burger {
-    display: block;
-  }
-
-  
+.text .span {
+  display: inline-block;
 }
 
-.nav-active {
-  transform: translateX(0%);
+span.name {
+  color: #0088a9;
 }
 
-@keyframes navLinkFade {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  } to {
-    opacity: 1;
-    transform: translateX(0px);
-  }
+.text p {
+  color: #fff;
+  letter-spacing: 3px;
+  word-spacing: 10px;
+  font-size: .8rem;
+}
+
+.profile-image img {
+  width: 250px;
+
+  margin-top: 50px;
+
 }
