@@ -13,7 +13,3 @@
 // limitations under the License.
 
 
-
-/*
-  Container function to involke all other smaller functions 
-*/

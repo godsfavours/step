@@ -1,70 +1,18 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  background-color: #192538;
-  font-family: "Montserrat", sans-serif;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-li, a {
-  font-weight: 500;
-  font-size: 16px;
-  color: #edf0f1;
-  text-decoration: none;
-}
-
-nav {
+.main-info-section {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 30px 10%;
+  height: 92vh;
 }
 
-
-.logo {
-  color: #edf0f1;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.nav-links {
-  list-style: none; /* remove bullet points */
+.main-links {
+  display: flex;
+  margin: auto;
+  align-items: center;
   
 }
 
-.nav-links li {
-  display: inline-block;
-  padding: 0px 20px;
-}
-
-.nav-links li a {
-  transition: all 0.3 ease 0s;
-}
-
-.nav-links li a:hover,
-.logo:hover {
-  color: #0088a9
-}
-
-
-.main-info-section {
-  display: flex;
-  width: 90%;
-  margin: auto;
-  align-items: center;
-}
-
-.text {
-  flex: 0.5;
-  margin-top: 50px;
-  margin-left: 200px;
-}
 .text h1 {
   color: #fff;
   font-size: 60px;
@@ -85,9 +33,4 @@ span.name {
   font-size: .8rem;
 }
 
-.profile-image img {
-  width: 250px;
 
-  margin-top: 50px;
-
-}

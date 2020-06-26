@@ -14,6 +14,3 @@
 
 
 
-/*
-  Container function to involke all other smaller functions 
-*/
