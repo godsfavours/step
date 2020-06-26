@@ -1,92 +1,56 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  background-color: #192538;
-  font-family: "Montserrat", sans-serif;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-li, a {
-  font-weight: 500;
-  font-size: 16px;
-  color: #edf0f1;
-  text-decoration: none;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 10%;
-}
-
-
-.logo {
-  color: #edf0f1;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.nav-links {
-  list-style: none; /* remove bullet points */
-
-}
-
-.nav-links li {
-  display: inline-block;
-  padding: 0px 20px;
-}
-
-.nav-links li a {
-  transition: all 0.3 ease 0s;
-}
-
-.nav-links li a:hover,
-.logo:hover {
-  color: #0088a9
-}
-
-
-.main-info-section {
+.about-section {
+  
+  padding: 0 100px 0 100px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 50px;
-  height: 92vh;
+
+  
 }
 
-.main-links {
-  display: flex;
-  margin: auto;
-  align-items: center;
-  padding: 100px;
-}
-
-.text h1 {
+.header {
+  text-align: right;
+  padding: 0px 0px 0px 0px;
   color: #fff;
   font-size: 60px;
+  text-align: left;
+  cursor: default;
 }
 
-.text .span {
-  display: inline-block;
-}
-
-span.name {
+span.letter:hover {
   color: #0088a9;
 }
 
-.text p {
+.text {
+  padding: 30px 0px 100px 0px;
   color: #fff;
   letter-spacing: 3px;
   word-spacing: 10px;
-  font-size: .8rem;
+  font-size: 16px;
+}
+
+.text:hover {
+  font-size: 32px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  
+}
+
+
+.carousel {
+  width: 40%;
+
+
+
+
+}
+
+.carousel-slide {
+  float: left;
+
+  
 }
 
 
