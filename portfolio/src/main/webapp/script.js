@@ -12,17 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+/*
+  Slides the right panel for mobile users when burger is clicked
+*/
+const navSlide = () => {
+  const burger = document.querySelector('.burger');
+  const nav = document.querySelector('.nav-links');
+  const navLinks = document.querySelectorAll('.nav-links li');
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  
+  burger.addEventListener('click', ()=> {
+    //toggle nav
+    nav.classList.toggle('nav-active');
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+    //animate links
+    navLinks.forEach((link, index) => {
+      if (link.style.animation) {
+        link.style.animation = '';
+      } else {
+      link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
+      }
+    });
+  });
+
+  
+  
 }
+
+/*
+  Container function to involke all other smaller functions 
+*/
+const app = () => {
+  navSlide();
+}
+
+app();

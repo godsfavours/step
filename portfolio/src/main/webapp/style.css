@@ -1,9 +1,108 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #192538;
+  font-family: "Montserrat", sans-serif;
 }
 
-#greeting-container {
-  margin-top: 20px;
+li, a {
+  font-weight: 500;
+  font-size: 16px;
+  color: #edf0f1;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10%;
+}
+
+
+.logo {
+  color: #edf0f1;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style: none; /* remove bullet points */
+  
+}
+
+.nav-links li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.nav-links li a {
+  transition: all 0.3 ease 0s;
+}
+
+.nav-links li a:hover,
+.logo:hover {
+  color: #0088a9
+}
+
+/* mobile compatibility for navbar*/
+/* burger is the the dashed lines for mobile */
+.burger {
+  display: none;
+  cursor: pointer;
+}
+
+.burger div {
+  width: 25px;
+  height: 2px;
+  background-color: #edf0f1;
+  margin: 5px;
+
+}
+
+/* when it hits 768 px all across */
+@media screen and (max-width: 768px) {
+  body {
+    overflow-x: hidden; /* disallow scrolling past x-boundary*/
+  }
+  .nav-links {
+    position: absolute;
+    right: 0px;
+    height: 50vh;
+    top: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    transform: translateX(100%); /* take side bar off page */
+    transition: transform 0.5s ease-in;
+  }
+
+  .nav-links li {
+    opacity: 0;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  
+}
+
+.nav-active {
+  transform: translateX(0%);
+}
+
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  } to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
