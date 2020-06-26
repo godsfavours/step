@@ -1,4 +1,5 @@
 .main-info-section {
+  padding: 0px 100px 0px 100px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -20,6 +21,10 @@
 
 .text .span {
   display: inline-block;
+}
+
+.text p:hover {
+  font-size: 30px;
 }
 
 span.name {
