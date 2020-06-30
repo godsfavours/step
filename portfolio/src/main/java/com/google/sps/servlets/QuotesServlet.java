@@ -26,7 +26,7 @@ import java.io.FileReader;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/quotes")
-public class DataServlet extends HttpServlet {
+public class QuotesServlet extends HttpServlet {
 
   private List<String> quotes;
 

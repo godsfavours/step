@@ -28,40 +28,22 @@ import java.io.IOException;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
-  private List<String> quotes;
-  private List<String> messages = {
-      "Hello There!", "Hope you're doing good!", "Nice weather, ey?"
-  };
+  private List<String> messages; 
 
   @Override
   public void init() {
-    getQuotes();
-  }
-
-  public void getQuotes() {
-    quotes = new ArrayList<>();
-
-    BufferedReader reader;
-    try {
-      reader = new BufferedReader(new FileReader("resources/quotes.txt"));
-    
-      String line;    
-      while ((line = reader.readLine()) != null) {
-        quotes.add(line);
-      }
+      messages = new ArrayList<>();
+      messages.add("Howdy there.");
+      messages.add("Hi there.");
+      messages.add("Hey there.");
       
-      reader.close();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String quote = quotes.get((int) (Math.random() * quotes.size()));
-
+    String data = "hello";
     response.setContentType("text/html;");
-    response.getWriter().println(quote);
+    response.getWriter().println(data);
   }
 }
