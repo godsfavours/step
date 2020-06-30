@@ -83,21 +83,23 @@
   
   <!-- Comments Section -->
   <a id="comments"></a>
-  <div class="coments-section">
+  <div class="comments-section">
     <h1 class="header">Comments</h1>
-    <div id="comments-container">
-      <form action="/data" method="POST">
-`       <div>
-          <label>Name</label>
-          <input type="text" name="user-name">
+    <div class="comments-container">
+      <form class = "submission-form" action="/data" method="POST">
+        <div>
+        <label>Name</label>
+        <input type="text" name="user-name">
         </div>
         <div>
-          <label>Comment</label>
-          <br/>
-          <textarea name="user-comment"></textarea>
+        <label>Comment</label>
+        <br/>
+        <textarea name="user-comment"></textarea>
         </div>
         <button type="submit">Submit</button>
       </form>
+
+      <div id="comments-display"></div>
     </div>
   </div>
 
