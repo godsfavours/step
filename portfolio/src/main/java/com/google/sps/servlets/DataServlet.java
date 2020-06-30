@@ -33,14 +33,21 @@ public class DataServlet extends HttpServlet {
   @Override
   public void init() {
       messages = new ArrayList<>();
-      messages.add("Howdy there!");
-      messages.add("Hi there!");
-      messages.add("Hey there!");
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
     response.getWriter().println(messages);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String userName = request.getParameter("user-name");
+    String userComment = request.getParameter("user-comment");
+    messages.add("Comment by " + userName + ": " + userComment);
+
+    // Redirect back to the HTML page.
+    response.sendRedirect("/index.html");
   }
 }
