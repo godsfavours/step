@@ -15,5 +15,14 @@
 function getQuote() {
   fetch('/quotes').then(response => response.text()).then((quote) => {
       document.getElementById('quote-container').innerText = quote;
-  }) 
+  });
+}
+
+function getMessages() {
+    console.log("getting messages");
+
+    fetch('/data').then(response => response.text()).then((messages) => {
+            console.log(messages);
+            document.getElementById('comments-container').insertAdjacentText("afterend", messages);    
+    });
 }
