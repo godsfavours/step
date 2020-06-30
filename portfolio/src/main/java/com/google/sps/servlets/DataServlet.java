@@ -41,7 +41,7 @@ public class DataServlet extends HttpServlet {
 
     BufferedReader reader;
     try {
-      reader = new BufferedReader(new FileReader("quotes.txt"));
+      reader = new BufferedReader(new FileReader("resources/quotes.txt"));
     
       String line;    
       while ((line = reader.readLine()) != null) {
