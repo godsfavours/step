@@ -23,16 +23,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
+@WebServlet("/quotes")
 public class DataServlet extends HttpServlet {
 
   private List<String> quotes;
-  private List<String> messages = {
-      "Hello There!", "Hope you're doing good!", "Nice weather, ey?"
-  };
 
   @Override
   public void init() {
