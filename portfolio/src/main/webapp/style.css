@@ -126,6 +126,7 @@ span.letter:hover {
     color: #ffff;
     text-align: center;
     font-size: 12px;
+    font-style: italic;
 }
 
 .projects-section p,

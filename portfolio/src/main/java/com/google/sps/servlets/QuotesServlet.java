@@ -23,24 +23,41 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
-  private List<String> messages; 
+@WebServlet("/quotes")
+public class QuotesServlet extends HttpServlet {
+
+  private List<String> quotes;
 
   @Override
   public void init() {
-      messages = new ArrayList<>();
-      messages.add("Howdy there!");
-      messages.add("Hi there!");
-      messages.add("Hey there!");
+    getQuotes();
+  }
+
+  public void getQuotes() {
+    quotes = new ArrayList<>();
+
+    BufferedReader reader;
+    try {
+      reader = new BufferedReader(new FileReader("resources/quotes.txt"));
+    
+      String line;    
+      while ((line = reader.readLine()) != null) {
+        quotes.add(line);
+      }
+      
+      reader.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("application/json;");
-    response.getWriter().println(messages);
+    String quote = quotes.get((int) (Math.random() * quotes.size()));
+
+    response.setContentType("text/html;");
+    response.getWriter().println(quote);
   }
 }

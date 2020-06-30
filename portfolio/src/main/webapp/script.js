@@ -13,30 +13,16 @@
 // limitations under the License.
 
 function getQuote() {
-  console.log('Fetching a random quote.');
-
-  // wait for response
-  const responsePromise = fetch('/data');
-
-  // pass the response to handleResponse()
-  responsePromise.then(handleResponse);
+  fetch('/quotes').then(response => response.text()).then((quote) => {
+      document.getElementById('quote-container').innerText = quote;
+  });
 }
 
-function handleResponse(response) {
-  console.log('Handling the response.');
+function getMessages() {
+    console.log("getting messages");
 
-  // wait for/get text promise from response
-  const textPromise = response.text();
-
-  // if ready, pass along to addQuoteToDom()
-  textPromise.then(addQuoteToDom);
-}
-
-function addQuoteToDom(quote) {
-  console.log('Adding quote to dom: ' + quote);
-
-  const quoteContainer = document.getElementById('quote-container');
-  quoteContainer.innerText = quote;
-
-  console.log('Added quote to dom');
+    fetch('/data').then(response => response.text()).then((messages) => {
+            console.log(messages);
+            document.getElementById('comments-container').insertAdjacentText("afterend", messages);    
+    });
 }
