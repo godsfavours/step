@@ -14,8 +14,6 @@ li, a {
 }
 
 nav {
-  
-  background-color: #192538;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,7 +48,6 @@ nav {
 }
 
 .main-info-section {
-  background-color: #192538;
   padding: 0px 100px 100px 100px;
   display: flex;
   flex-direction: column;
@@ -115,7 +112,6 @@ span.letter:hover {
 }
 
 .projects-section {
-  background-color: #192538;
   padding: 200px 100px 100px 100px;
   text-align: center;
   height: 100vh;
@@ -151,7 +147,8 @@ span.letter:hover {
 }
 
 .projects-section h1,
-.about-section h1 {
+.about-section h1, 
+.comments-section h1 {
   text-align: center;
   font-size: 80px;
   padding: 0px 0px 20px 0px;
@@ -196,4 +193,38 @@ img {
   letter-spacing: 5px;
   color: #0088a9;
   font-size: 24px;
+}
+
+.comments-section {
+  padding: 200px 100px 100px 100px;
+  height: 100vh;
+}
+
+.comments-container {  
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+}
+
+.submission-form {
+    text-align: center;
+    color: #ffff;
+}
+
+.submission-form input,
+.submission-form textarea {
+    background-color: white;
+}
+
+.submission-form button {
+    background-color: white;
+    color: black;
+}
+
+#comment-list {
+  padding: 100px;
+  list-style: none;
+  color: white;  
+  text-align: center;
 }
