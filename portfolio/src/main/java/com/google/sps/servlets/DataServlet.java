@@ -30,7 +30,7 @@ import java.util.List;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime; 
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that responsible for handling */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
   private DatastoreService datastore;
@@ -46,13 +46,21 @@ public class DataServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Comment").addSort("dateposted", Query.SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
+    
+    int maxComments = Integer.parseInt(request.getParameter("maxComments"));
+    System.out.println("max comments = " + maxComments);
+    int count = 0;
 
     List<String> comments = new ArrayList<>();
     for (Entity entity: results.asIterable()) {
+        if (count >= maxComments) break;
+
         String message = (String) entity.getProperty("usercomment") +
                          " - " + (String) entity.getProperty("username") +
                          ", " + (String) entity.getProperty("dateposted");
         comments.add(message);
+
+        count++;     
     }
 
     Gson gson = new Gson();

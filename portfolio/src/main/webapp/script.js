@@ -25,11 +25,12 @@ function getQuote() {
 }
 
 function getMessages() {
-    console.log("getting messages");
+    var commentListElement = document.getElementById('comment-list');
+    commentListElement.innerHTML = ""; // clear out old comments
 
-    fetch('/data').then(response => response.json()).then((messages) => {
-        const commentListElement = document.getElementById('comment-list');
-        
+    var queryString = '/data?maxComments=' + document.getElementById('max-comments').value;
+    console.log(queryString);
+    fetch(queryString).then(response => response.json()).then((messages) => {
         messages.forEach((message) => {
             commentListElement.appendChild(createCommentElement(message));
         })

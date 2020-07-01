@@ -196,7 +196,7 @@ img {
 }
 
 .comments-section {
-  padding: 200px 100px 100px 100px;
+  padding: 100px 100px 100px 100px;
   height: 100vh;
 }
 
@@ -207,24 +207,35 @@ img {
     background-color: white;
 }
 
-.submission-form {
+.comments-container {
     text-align: center;
     color: #ffff;
 }
 
+.submission-form {
+    padding: 10px 0px 10px 0px;
+}
 .submission-form input,
-.submission-form textarea {
+.submission-form textarea,
+.comments-display input {
     background-color: white;
 }
 
-.submission-form button {
+.submission-form button,
+.comments-display button {
+
     background-color: white;
     color: black;
 }
 
+.comments-display {
+    padding: 100px;
+}
+
 #comment-list {
-  padding: 100px;
+  padding: 20px;
   list-style: none;
   color: white;  
   text-align: center;
 }
+
