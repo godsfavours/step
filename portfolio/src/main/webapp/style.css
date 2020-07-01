@@ -196,9 +196,8 @@ img {
 }
 
 .comments-section {
-  padding: 0px 100px 100px 100px;
-  
-  height: 93vh;
+  padding: 200px 100px 100px 100px;
+  height: 100vh;
 }
 
 .comments-container {  
@@ -221,4 +220,11 @@ img {
 .submission-form button {
     background-color: white;
     color: black;
+}
+
+#comment-list {
+  padding: 100px;
+  list-style: none;
+  color: white;  
+  text-align: center;
 }

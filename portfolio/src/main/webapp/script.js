@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Calls functions to fetch the state of the page
 function runServlets() {
     getQuote();
     getMessages();
@@ -26,8 +27,19 @@ function getQuote() {
 function getMessages() {
     console.log("getting messages");
 
-    fetch('/data').then(response => response.text()).then((messages) => {
-        console.log(messages);
-        document.getElementById('comments-display').insertAdjacentText("afterend", messages);    
+    fetch('/data').then(response => response.json()).then((messages) => {
+        const commentListElement = document.getElementById('comment-list');
+        
+        messages.forEach((message) => {
+            commentListElement.appendChild(createCommentElement(message));
+        })
     });
+}
+
+// Creates <li> element containing text
+function createCommentElement(message) {
+    const commentElement = document.createElement('li');
+    commentElement.className = 'comment';
+    commentElement.innerText = message;
+    return commentElement;
 }
