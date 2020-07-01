@@ -13,7 +13,7 @@
 // limitations under the License.
 
 // Calls functions to fetch the state of the page
-function runServlets() {
+function init() {
     getQuote();
     getMessages();
 }
@@ -38,7 +38,7 @@ function getMessages() {
 
 // Creates <li> element containing text
 function createCommentElement(message) {
-    const commentElement = document.createElement('li');
+    let commentElement = document.createElement('li');
     commentElement.className = 'comment';
     commentElement.innerText = message;
     return commentElement;
