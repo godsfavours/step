@@ -170,7 +170,6 @@ img {
   height:auto;
 }
 
-
 .about-section {
   background-color: #192538;
   padding: 100px 100px 100px 100px;
@@ -193,6 +192,19 @@ img {
   letter-spacing: 5px;
   color: #0088a9;
   font-size: 24px;
+}
+
+.about-section li {
+    list-style: none;
+    padding: 10px;
+}
+.about-section image {
+    width: 50%;
+    height: 50%;
+}
+
+.about-section button {
+    background-color: white;
 }
 
 .comments-section {
@@ -223,7 +235,6 @@ img {
 
 .submission-form button,
 .comments-display button {
-
     background-color: white;
     color: black;
 }
@@ -238,4 +249,3 @@ img {
   color: white;  
   text-align: center;
 }
-
