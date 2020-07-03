@@ -30,7 +30,7 @@ import java.util.List;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime; 
 
-/** Servlet that responsible for handling */
+/** Servlet responsible for handling comments **/
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
   private DatastoreService datastore;
@@ -45,6 +45,7 @@ public class DataServlet extends HttpServlet {
     Query query = new Query("Comment").addSort("dateposted", Query.SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
     
+    // maxComments used to limit the number of comments the client sees
     int maxComments = Integer.parseInt(request.getParameter("maxComments"));
     int count = 0;
     List<String> comments = new ArrayList<>();
@@ -69,7 +70,7 @@ public class DataServlet extends HttpServlet {
     String userName = request.getParameter("user-name");
     String userComment = request.getParameter("user-comment");
   
-    // Allows to sort the comments by date
+    // DateTimeFormatter included to allow for comment sorting by date added
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
     LocalDateTime now = LocalDateTime.now();  
     String datePosted = dtf.format(now);  
