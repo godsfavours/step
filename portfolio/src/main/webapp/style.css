@@ -13,6 +13,7 @@ li, a {
   text-decoration: none;
 }
 
+/** Navigation Bar **/
 nav {
   display: flex;
   justify-content: space-between;
@@ -47,6 +48,7 @@ nav {
   color: #0088a9
 }
 
+/** Main section **/
 .main-info-section {
   padding: 0px 100px 100px 100px;
   display: flex;
@@ -54,6 +56,14 @@ nav {
   justify-content: space-around;
   align-items: center;
   height: 93vh;
+}
+
+#quote-container {
+    padding: 100px 0px 0px 0px;
+    color: #ffff;
+    text-align: center;
+    font-size: 12px;
+    font-style: italic;
 }
 
 .text {
@@ -111,18 +121,11 @@ span.letter:hover {
   color: #0088a9;
 }
 
+/** Projects section **/
 .projects-section {
   padding: 200px 100px 100px 100px;
   text-align: center;
   height: 100vh;
-}
-
-#quote-container {
-    padding: 100px 0px 0px 0px;
-    color: #ffff;
-    text-align: center;
-    font-size: 12px;
-    font-style: italic;
 }
 
 .projects-section p,
@@ -170,6 +173,7 @@ img {
   height:auto;
 }
 
+/** About section **/
 .about-section {
   background-color: #192538;
   padding: 100px 100px 100px 100px;
@@ -207,6 +211,7 @@ img {
     background-color: white;
 }
 
+/** Comments section **/
 .comments-section {
   padding: 100px 100px 100px 100px;
   height: 100vh;
