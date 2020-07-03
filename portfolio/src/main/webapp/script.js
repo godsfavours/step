@@ -12,11 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var image = {
-    array: ["0.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
-    showing: 0
-}
-
 // Calls functions to fetch the state of the page
 function init() {
     getQuote();
