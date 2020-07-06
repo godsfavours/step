@@ -59,7 +59,7 @@ nav {
 }
 
 #quote-container {
-    padding: 100px 0px 0px 0px;
+    padding: 125px 0px 0px 0px;
     color: #ffff;
     text-align: center;
     font-size: 12px;
@@ -209,6 +209,11 @@ img {
 
 .about-section button {
     background-color: white;
+}
+
+#chart-div {
+    display: inline-block;
+    margin: 0 auto;
 }
 
 /** Comments section **/

@@ -12,7 +12,7 @@
   <!-- Navigation Bar -->
   <div class="container navbar">
     <nav>
-      <div class="logo"><h4><a href="#home">Godsfavour</a></h4></div>
+      <div class="logo"><h4><a href="#home">My Portfolio</a></h4></div>
       <ul class="nav-links">   
         <li><a href="#home">Home</a></li>      
         <li><a href="#projects">Projects</a></li>
@@ -88,33 +88,36 @@
         <li>I'm the eldest of four in my family</li>
         <li>My favorite genre of movies/tv shows is sci-fi. I'm currently watching the Stargate Atlantis, the third and last (so far) show of the Stargate series</li>
     </ul>
+    <h2>Places I've been:</h2>
+    <h2>How I spend my days this summer (hours):</h2>
     <div id="chart-div"></div>
+    
 
     <!-- Comments Section -->
-  <a id="comments"></a>
-  <div class="comments-section">
-    <h1 class="header">Comments</h1>
-    <div class="comments-container">
-        <h3>Leave a comment!</h3>
-      <form class = "submission-form" action="/data" method="POST">
-        <div>
-        <label>Name</label>
-        <input type="text" name="user-name">
+    <a id="comments"></a>
+    <div class="comments-section">
+        <h1 class="header">Comments</h1>
+        <div class="comments-container">
+            <h3>Leave a comment!</h3>
+        <form class = "submission-form" action="/data" method="POST">
+            <div>
+            <label>Name</label>
+            <input type="text" name="user-name">
+            </div>
+            <div>
+            <label>Comment</label>
+            <br/>
+            <textarea name="user-comment"></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="comments-display">
+            <label>Display Comments:</label>
+            <input onchange="getMessages()" type="number" id="max-comments" min="0" max = "20"> 
+            <ul id="comment-list"></ul>   
         </div>
-        <div>
-        <label>Comment</label>
-        <br/>
-        <textarea name="user-comment"></textarea>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-      <div class="comments-display">
-        <label>Display Comments:</label>
-        <input onchange="getMessages()" type="number" id="max-comments" min="0" max = "20"> 
-        <ul id="comment-list"></ul>   
-      </div>
-    </div>   
-  </div>
+        </div>   
+    </div>
   </div>
   
   
