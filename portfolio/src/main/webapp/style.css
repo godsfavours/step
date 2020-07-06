@@ -4,6 +4,7 @@
   padding: 0;
   background-color: #192538;
   font-family: "Montserrat", sans-serif;
+  width: auto;
 }
 
 li, a {
@@ -226,6 +227,10 @@ img {
 .comments-container {
     text-align: center;
     color: #ffff;
+}
+
+.comments-container h3 {
+    font-style: italic;
 }
 
 .submission-form {
