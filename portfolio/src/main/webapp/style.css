@@ -50,7 +50,6 @@ nav {
 
 /** Main section **/
 .main-info-section {
-  padding: 0px 100px 100px 100px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -123,7 +122,7 @@ span.letter:hover {
 
 /** Projects section **/
 .projects-section {
-  padding: 200px 100px 100px 100px;
+  padding: 100px;
   text-align: center;
   height: 100vh;
 }
@@ -175,8 +174,8 @@ img {
 
 /** About section **/
 .about-section {
+  padding: 100px;
   background-color: #192538;
-  padding: 100px 100px 100px 100px;
   text-align: center;
   height: 100vh;
 }
@@ -213,7 +212,7 @@ img {
 
 /** Comments section **/
 .comments-section {
-  padding: 100px 100px 100px 100px;
+  padding: 100px;
   height: 100vh;
 }
 
