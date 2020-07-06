@@ -13,7 +13,7 @@
 // limitations under the License.
 
 // Calls functions to fetch the state of the page
-function runServlets() {
+function init() {
     getQuote();
     getMessages();
 }
@@ -25,11 +25,12 @@ function getQuote() {
 }
 
 function getMessages() {
-    console.log("getting messages");
+    var commentListElement = document.getElementById('comment-list');
+    commentListElement.innerHTML = ""; // clear out old comments
 
-    fetch('/data').then(response => response.json()).then((messages) => {
-        const commentListElement = document.getElementById('comment-list');
-        
+    var queryString = '/data?maxComments=' + document.getElementById('max-comments').value;
+    console.log(queryString);
+    fetch(queryString).then(response => response.json()).then((messages) => {
         messages.forEach((message) => {
             commentListElement.appendChild(createCommentElement(message));
         })
@@ -38,8 +39,42 @@ function getMessages() {
 
 // Creates <li> element containing text
 function createCommentElement(message) {
-    const commentElement = document.createElement('li');
+    let commentElement = document.createElement('li');
     commentElement.className = 'comment';
     commentElement.innerText = message;
     return commentElement;
+}
+
+// Display pie chart onto web page
+// Load the Visualization API and the corechart package.
+google.charts.load('current', {'packages':['corechart']});
+
+// Set a callback to run when the Google Visualization API is loaded.
+google.charts.setOnLoadCallback(drawChart);
+
+// Callback that creates and populates a data table,
+// instantiates the pie chart, passes in the data and
+// draws it.
+function drawChart() {
+
+// Create the data table.
+var data = new google.visualization.DataTable();
+data.addColumn('string', 'Topping');
+data.addColumn('number', 'Slices');
+data.addRows([
+    ['Mushrooms', 3],
+    ['Onions', 1],
+    ['Olives', 1],
+    ['Zucchini', 1],
+    ['Pepperoni', 2]
+]);
+
+// Set chart options
+var options = {'title':'How Much Pizza I Ate Last Night',
+                'width':400,
+                'height':300};
+
+// Instantiate and draw our chart, passing in some options.
+var chart = new google.visualization.PieChart(document.getElementById('chart-div'));
+chart.draw(data, options);
 }

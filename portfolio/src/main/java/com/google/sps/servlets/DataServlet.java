@@ -27,30 +27,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime; 
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet responsible for handling comments **/
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
   private DatastoreService datastore;
   
-
   @Override
   public void init() {
       datastore = DatastoreServiceFactory.getDatastoreService();
-      
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("Comment");
+    Query query = new Query("Comment").addSort("dateposted", Query.SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
-
+    
+    // maxComments used to limit the number of comments the client sees
+    int maxComments = Integer.parseInt(request.getParameter("maxComments"));
+    int count = 0;
     List<String> comments = new ArrayList<>();
-
     for (Entity entity: results.asIterable()) {
-        String message = (String) entity.getProperty("username") +
-                         ": " + (String) entity.getProperty("usercomment");
+        //datastore.delete(entity.getKey());
+        if (count >= maxComments) break;
+
+        String message = (String) entity.getProperty("usercomment") +
+                        " - " + (String) entity.getProperty("username") +
+                         ", " + (String) entity.getProperty("dateposted");
         comments.add(message);
+        count++;     
     }
 
     Gson gson = new Gson();
@@ -62,10 +69,17 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String userName = request.getParameter("user-name");
     String userComment = request.getParameter("user-comment");
+  
+    // DateTimeFormatter included to allow for comment sorting by date added
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+    LocalDateTime now = LocalDateTime.now();  
+    String datePosted = dtf.format(now);  
 
+    // Create the Entity and add to datastore
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("username", userName);
     commentEntity.setProperty("usercomment", userComment);
+    commentEntity.setProperty("dateposted", datePosted);
     datastore.put(commentEntity);
 
     // Redirect back to the HTML page.

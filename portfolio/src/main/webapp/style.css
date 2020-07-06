@@ -13,6 +13,7 @@ li, a {
   text-decoration: none;
 }
 
+/** Navigation Bar **/
 nav {
   display: flex;
   justify-content: space-between;
@@ -47,13 +48,21 @@ nav {
   color: #0088a9
 }
 
+/** Main section **/
 .main-info-section {
-  padding: 0px 100px 100px 100px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   height: 93vh;
+}
+
+#quote-container {
+    padding: 100px 0px 0px 0px;
+    color: #ffff;
+    text-align: center;
+    font-size: 12px;
+    font-style: italic;
 }
 
 .text {
@@ -111,18 +120,11 @@ span.letter:hover {
   color: #0088a9;
 }
 
+/** Projects section **/
 .projects-section {
-  padding: 200px 100px 100px 100px;
+  padding: 100px;
   text-align: center;
   height: 100vh;
-}
-
-#quote-container {
-    padding: 100px 0px 0px 0px;
-    color: #ffff;
-    text-align: center;
-    font-size: 12px;
-    font-style: italic;
 }
 
 .projects-section p,
@@ -170,10 +172,10 @@ img {
   height:auto;
 }
 
-
+/** About section **/
 .about-section {
+  padding: 100px;
   background-color: #192538;
-  padding: 100px 100px 100px 100px;
   text-align: center;
   height: 100vh;
 }
@@ -195,8 +197,22 @@ img {
   font-size: 24px;
 }
 
+.about-section li {
+    list-style: none;
+    padding: 10px;
+}
+.about-section image {
+    width: 50%;
+    height: 50%;
+}
+
+.about-section button {
+    background-color: white;
+}
+
+/** Comments section **/
 .comments-section {
-  padding: 200px 100px 100px 100px;
+  padding: 100px;
   height: 100vh;
 }
 
@@ -207,23 +223,32 @@ img {
     background-color: white;
 }
 
-.submission-form {
+.comments-container {
     text-align: center;
     color: #ffff;
 }
 
+.submission-form {
+    padding: 10px 0px 10px 0px;
+}
 .submission-form input,
-.submission-form textarea {
+.submission-form textarea,
+.comments-display input {
     background-color: white;
 }
 
-.submission-form button {
+.submission-form button,
+.comments-display button {
     background-color: white;
     color: black;
 }
 
+.comments-display {
+    padding: 100px;
+}
+
 #comment-list {
-  padding: 100px;
+  padding: 20px;
   list-style: none;
   color: white;  
   text-align: center;
