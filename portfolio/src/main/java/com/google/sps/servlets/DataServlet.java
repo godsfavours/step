@@ -46,11 +46,15 @@ public class DataServlet extends HttpServlet {
     PreparedQuery results = datastore.prepare(query);
     
     // maxComments used to limit the number of comments the client sees
-    int maxComments = Integer.parseInt(request.getParameter("maxComments"));
+    String maxCommentsStr = request.getParameter("maxComments");
+    if (maxCommentsStr == null || maxCommentsStr.isEmpty()) {
+        return;
+    }
+
+    int maxComments = Integer.parseInt(maxCommentsStr);
     int count = 0;
     List<String> comments = new ArrayList<>();
     for (Entity entity: results.asIterable()) {
-        //datastore.delete(entity.getKey());
         if (count >= maxComments) break;
 
         String message = (String) entity.getProperty("usercomment") +

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 package com.google.sps.servlets;
-
+import java.io.IOException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -22,12 +22,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 
 /** Returns daily activities data as a JSON object */
 @WebServlet("/daily-activities")
 public class DailyActivitiesServlet extends HttpServlet {
   // Private variables used to construct json. Represents hours spend on each activity
-  private double eating, freeTime, reading, sleeping, working, exercising;
+  HashMap<String, Double> activityHours;
+
+  @Override
+  public void init() {
+      activityHours = new HashMap<String, Double>();
+  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -47,8 +53,7 @@ public class DailyActivitiesServlet extends HttpServlet {
             {
                 // Cannot directly cast Object to double as double is primitive, so long
                 // used as an intermediary
-                Long keyvalue = (long) jsonObj.get(keyStr); 
-                updateValues((String) keyStr, (double) keyvalue);
+                updateValues((String) keyStr, Double.valueOf((Long) jsonObj.get(keyStr)));
             });
         }
     } catch (Exception e) {
@@ -60,35 +65,15 @@ public class DailyActivitiesServlet extends HttpServlet {
   }
 
   // Updates the private variables of DailyActivitiesServlet class
-  private void updateValues(String key, double value) {
-    switch (key) {
-        case "Eating":
-            this.eating = getAverage(this.eating, value);
-            break;
-        case "Free Time":
-            this.freeTime = getAverage(this.freeTime, value);
-            break;
-        case "Reading":
-            this.reading = getAverage(this.reading, value);
-            break;
-        case "Sleeping":
-            this.sleeping = getAverage(this.sleeping, value);
-            break;
-        case "Working":
-            this.working = getAverage(this.working, value);
-            break;
-        case "Exercising":
-            this.exercising = getAverage(this.exercising, value);
-            break;
-        default:
-            System.out.println("Key not identified.");
-            break;
-    }
+  private void updateValues(String key, Double value) {
+    activityHours.put(key, getAverage(activityHours.get(key), value));
   }
 
   // Averages the values for each element
-  private double getAverage(double mainVal, double newVal) {
-    if (mainVal == 0 || newVal == 0){
+  private Double getAverage(Double mainVal, Double newVal) {
+    if (mainVal == null){
+        return newVal;
+    } else if (mainVal == 0 || newVal == 0) {
         return mainVal + newVal;
     }
     return (mainVal + newVal) / 2;
@@ -97,15 +82,14 @@ public class DailyActivitiesServlet extends HttpServlet {
   // Constructs the response JSON as a String
   private String constructJSON() {
     String json = "{";
-    json += "\"Eating\": " + String.valueOf(this.eating) + ", ";
-    json += "\"Free Time\": " + String.valueOf(this.freeTime) + ", ";
-    json += "\"Reading\": " + String.valueOf(this.reading) + ", ";
-    json += "\"Sleeping\": " + String.valueOf(this.sleeping) + ", ";
-    json += "\"Working\": " + String.valueOf(this.working) + ", ";
-    json += "\"Exercising\": " + String.valueOf(this.exercising);
+    json += "\"Eating\": " + String.valueOf(activityHours.get("Eating")) + ", ";
+    json += "\"Free Time\": " + String.valueOf(activityHours.get("Free time")) + ", ";
+    json += "\"Reading\": " + String.valueOf(activityHours.get("Reading")) + ", ";
+    json += "\"Sleeping\": " + String.valueOf(activityHours.get("Sleeping")) + ", ";
+    json += "\"Working\": " + String.valueOf(activityHours.get("Working")) + ", ";
+    json += "\"Exercising\": " + String.valueOf(activityHours.get("Exercising"));
     json += "}";
-
-    System.out.println(json);
+   
     return json;
   }
 }
