@@ -17,14 +17,7 @@ package com.google.sps.servlets;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
 import java.io.FileReader;
-import java.util.Iterator;
-
-import com.google.gson.Gson;
-import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Scanner;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
