@@ -16,6 +16,9 @@
 function init() {
     getQuote();
     getMessages();
+    
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
 }
 
 function getQuote() {
@@ -45,40 +48,26 @@ function createCommentElement(message) {
     return commentElement;
 }
 
-// Display pie chart onto web page
-// Load the Visualization API and the corechart package.
-google.charts.load('current', {'packages':['corechart']});
 
-// Set a callback to run when the Google Visualization API is loaded.
-google.charts.setOnLoadCallback(drawChart);
-
-// Callback that creates and populates a data table,
-// instantiates the pie chart, passes in the data and
-// draws it.
 function drawChart() {
+    fetch('/daily-activities').then(response => response.json())
+        .then((dailyActivities) => {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Activity');
+            data.addColumn('number', 'Hours');
 
-// Create the data table.
-var data = new google.visualization.DataTable();
-data.addColumn('string', 'Activity');
-data.addColumn('number', 'Hours');
-data.addRows([
-    ['Work', 8],
-    ['Sleep', 8],
-    ['Read', 1],
-    ['Eat', 1],
-    ['Free time', 4],
-    ['Exercise', 2]
-]);
+            Object.keys(dailyActivities).forEach((activity) => {
+            data.addRow([activity, dailyActivities[activity]]);
+            });
 
-// Set chart options
-var options = {
+            var options = {
                 'width':600,
                 'height':500,
                 is3D: true,
                 legend: {position: 'none'}
-                };
+            };
 
-// Instantiate and draw our chart, passing in some options.
-var chart = new google.visualization.PieChart(document.getElementById('chart-div'));
-chart.draw(data, options);
+            var chart = new google.visualization.PieChart(document.getElementById('chart-div'));
+            chart.draw(data, options);
+    });
 }

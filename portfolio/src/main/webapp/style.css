@@ -178,13 +178,14 @@ img {
   padding: 100px;
   background-color: #192538;
   text-align: center;
-  height: 100vh;
+
 }
 
 .about-section h2{
   letter-spacing: 10px;
   color: #0088a9;
   font-size: 40px;
+  padding: 20px 0px 0px 0px;
 }
 
 .about-section p {
@@ -214,6 +215,11 @@ img {
 #chart-div {
     display: inline-block;
     margin: 0 auto;
+}
+
+#chart-comment {
+    font-style: italic;
+    font-size: 12px;
 }
 
 /** Comments section **/
