@@ -1,6 +1,6 @@
 {
     "Daily Activities": [
-        {"Eating": 1, "Free time": 4, "Reading": 1, "Sleeping": 8, "Working": 8, "Exercising": 2},
-        {"Eating": 1, "Free time": 4, "Reading": 1, "Sleeping": 8, "Working": 9, "Exercising": 1}
+        {"Eating": 1.0, "Free time": 4.0, "Reading": 1.0, "Sleeping": 8.0, "Working": 8.0, "Exercising": 2.0},
+        {"Eating": 1.0, "Free time": 4.0, "Reading": 1.0, "Sleeping": 8.0, "Working": 9.0, "Exercising": 1.0}
     ]
 }

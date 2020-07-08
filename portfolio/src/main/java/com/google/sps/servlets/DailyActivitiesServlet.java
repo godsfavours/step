@@ -13,6 +13,7 @@
 // limitations under the License.
 
 package com.google.sps.servlets;
+
 import java.io.IOException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -23,6 +24,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.Map;
+import com.google.gson.Gson;
 
 /** Returns daily activities data as a JSON object */
 @WebServlet("/daily-activities")
@@ -44,16 +47,15 @@ public class DailyActivitiesServlet extends HttpServlet {
         JSONObject jsonObject = (JSONObject) obj;
         JSONArray activities = (JSONArray) jsonObject.get("Daily Activities");
 
+        activityHours.clear();
         for (int i = 0; i < activities.size(); i++) {
             JSONObject jsonObj = (JSONObject) activities.get(i);
 
             // JSONObject inherits keySet() from the Map class. It is used here to
             // get the keys for each element within the json object (ex. "eating", "reading")
             jsonObj.keySet().forEach(keyStr ->
-            {
-                // Cannot directly cast Object to double as double is primitive, so long
-                // used as an intermediary
-                updateValues((String) keyStr, Double.valueOf((Long) jsonObj.get(keyStr)));
+            {              
+                updateValues((String) keyStr, (Double) jsonObj.get(keyStr));
             });
         }
     } catch (Exception e) {
@@ -65,8 +67,8 @@ public class DailyActivitiesServlet extends HttpServlet {
   }
 
   // Updates the private variables of DailyActivitiesServlet class
-  private void updateValues(String key, Double value) {
-    activityHours.put(key, getAverage(activityHours.get(key), value));
+  private void updateValues(String activity, Double hours) {
+    activityHours.put(activity, getAverage(activityHours.get(activity), hours));
   }
 
   // Averages the values for each element
@@ -82,14 +84,16 @@ public class DailyActivitiesServlet extends HttpServlet {
   // Constructs the response JSON as a String
   private String constructJSON() {
     String json = "{";
-    json += "\"Eating\": " + String.valueOf(activityHours.get("Eating")) + ", ";
-    json += "\"Free Time\": " + String.valueOf(activityHours.get("Free time")) + ", ";
-    json += "\"Reading\": " + String.valueOf(activityHours.get("Reading")) + ", ";
-    json += "\"Sleeping\": " + String.valueOf(activityHours.get("Sleeping")) + ", ";
-    json += "\"Working\": " + String.valueOf(activityHours.get("Working")) + ", ";
-    json += "\"Exercising\": " + String.valueOf(activityHours.get("Exercising"));
+    for (Map.Entry activity : activityHours.entrySet()) { 
+        json += "\"" + (String) activity.getKey() + "\": ";
+        json += String.valueOf((Double) activity.getValue());
+        json += ", ";
+    } 
+
+    // Remove comma after last element
+    json = json.substring(0, json.length() - 2);
     json += "}";
-   
+
     return json;
   }
 }
