@@ -55,7 +55,8 @@ public class DailyActivitiesServlet extends HttpServlet {
             // get the keys for each element within the json object (ex. "eating", "reading")
             jsonObj.keySet().forEach(keyStr ->
             {              
-                updateValues((String) keyStr, (Double) jsonObj.get(keyStr));
+
+                updateValues((String) keyStr, Double.valueOf(jsonObj.get(keyStr).toString()));
             });
         }
     } catch (Exception e) {
