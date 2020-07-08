@@ -27,7 +27,6 @@ import java.io.FileReader;
 /** Servlet responsible for handling quotes **/
 @WebServlet("/quotes")
 public class QuotesServlet extends HttpServlet {
-
   private List<String> quotes;
 
   @Override

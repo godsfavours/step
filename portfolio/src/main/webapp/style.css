@@ -4,6 +4,7 @@
   padding: 0;
   background-color: #192538;
   font-family: "Montserrat", sans-serif;
+  width: auto;
 }
 
 li, a {
@@ -58,7 +59,7 @@ nav {
 }
 
 #quote-container {
-    padding: 100px 0px 0px 0px;
+    padding: 125px 0px 0px 0px;
     color: #ffff;
     text-align: center;
     font-size: 12px;
@@ -177,13 +178,14 @@ img {
   padding: 100px;
   background-color: #192538;
   text-align: center;
-  height: 100vh;
+
 }
 
 .about-section h2{
   letter-spacing: 10px;
   color: #0088a9;
   font-size: 40px;
+  padding: 20px 0px 0px 0px;
 }
 
 .about-section p {
@@ -210,6 +212,16 @@ img {
     background-color: white;
 }
 
+#chart-div {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+#chart-comment {
+    font-style: italic;
+    font-size: 12px;
+}
+
 /** Comments section **/
 .comments-section {
   padding: 100px;
@@ -226,6 +238,10 @@ img {
 .comments-container {
     text-align: center;
     color: #ffff;
+}
+
+.comments-container h3 {
+    font-style: italic;
 }
 
 .submission-form {
