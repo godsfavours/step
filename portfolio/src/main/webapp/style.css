@@ -121,57 +121,7 @@ span.letter:hover {
   color: #0088a9;
 }
 
-/** Projects section **/
-.projects-section {
-  padding: 100px;
-  text-align: center;
-  height: 100vh;
-}
-
-.projects-section p,
-.about-section p {
-  color: #ffff;
-
-}
-
-.projects-list {
-  padding: 100px;
-  height: 300px;
-}
-
-.project {
-  padding: 0px 0px 0px 20px;
-  background-color: #1b273a;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-}
-
-.projects-section h1,
-.about-section h1, 
-.comments-section h1 {
-  text-align: center;
-  font-size: 80px;
-  padding: 0px 0px 20px 0px;
-  letter-spacing: 15px;
-  color: #0088a9;
-}
-
-.project h2{
-  background-color: #1b273a;
-  color: #006d88;
-}
-
-.project p {
-  background-color: #1b273a;
-}
-
-img {
-  max-width:30%;
-  height:auto;
-}
+/** Games section **/
 
 /** About section **/
 .about-section {
