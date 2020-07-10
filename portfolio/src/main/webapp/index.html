@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Web Page</title> 
+  <title>Godsfavour's Portfolio</title> 
   <link rel="stylesheet" href="style.css">
   <script src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="script.js"></script>
@@ -12,11 +12,11 @@
   <!-- Navigation Bar -->
   <div class="container navbar">
     <nav>
-      <div class="logo"><h4><a href="#home">My Portfolio</a></h4></div>
+      
       <ul class="nav-links">   
         <li><a href="#home">Home</a></li>      
-        <li><a href="#games">Games</a></li>
-        <li><a href="#about">About</a></li>
+        <!--<li><a href="#games"></a></li>-->
+        <li><a href="#about">About Me</a></li>
         <li><a href="#comments">Comments</a></li>
       </ul>
     </nav>  
@@ -26,70 +26,61 @@
   <a id="home"></a>
   <div class="main-info-section">
     <div id="quote-container"></div>
-    <div class="text">
-      <h1>
-        <span class="letter">H</span>
-        <span class="letter">i</span>
-        <span class="letter">,&nbsp</span>
-        <span class="letter"> I</span>
-        <span class="letter">'</span>
-        <span class="letter">m</span>
-        <span class="name">Godsfavour</span>
-      </h1>
-      <p> I am a Google STEP (Student Training in Engineering Program) intern, student,
-        and aspiring software developer.  
-      </p>     
+    <div class = "textandpicture">
+      <div class="text">
+        <h1>
+          <span class="letter">H</span>
+          <span class="letter">i</span>
+          <span class="letter">,&nbsp</span>
+          <span class="letter"> I</span>
+          <span class="letter">'</span>
+          <span class="letter">m</span>
+          <span class="name">Godsfavour</span>
+        </h1>
+        <p> I am a Google STEP (Student Training in Engineering Program) intern, student,
+          and aspiring software developer. 
+          </p>
+      </div>
+      <img src="resources/images/portrait.png"></img>
     </div>
+    
     <div class="links">
       <ul class="external-links">   
-        <li><a href="https://www.linkedin.com/in/godsfavour-simon-7b8838195/">LinkedIn</a></li>      
-        <li><a href="https://github.com/godsfavours">GitHub</a></li>
+        <li class = "link"><a href="https://www.linkedin.com/in/godsfavour-simon-7b8838195/">LinkedIn</a></li>      
+        <li class = "link"><a href="https://github.com/godsfavours">GitHub</a></li>
       </ul> 
     </div>
   </div>  
 
   <!-- Games Section -->
-  <a id="games"></a>
-  <div class="games-section">
-    <h1 class="header">Play some games I've made for this project!</h1>
-    
-  </div>
+
 
   <!-- About Section -->
   <a id="about"></a>
   <div class="about-section">
     <h1 class="header">About Me</h1>
     <p>Hi, I'm Godsfavour Simon. I am an incoming second year student at Stanford University,
-      working as a Google STEP intern this summer.</p>
-    <p> I love technology and creating awesome stuff!</p>
-    <h2> Where I'm From</h2>
-    <p>I currently reside in St. Paul, Minnesota</p>
-    <h2>My hobbies</h2>
-    <p>In my free time, I enjoy reading, drawing, programming, working out, and gaming.</p>
-    <h2>My your dream job?</h2>
-    <p>My dream job is one where I create amazing technology that can have a positive 
-      impact on the lives of many people!</p>
-    <h2>Some facts!</h2>
-    <ul>
-        <li>I grew up in Nigeria and moved to the United States with family when I was 10. 
-            It was during this time that my first name was changed to Godsfavour 
-            (it was previously my middle name)</li>
-        <li>I love playing sports. I've been playing soccer my whole life, and I found track and field in high school.
-            One of my goals during college is to make the varsity track and field team for sprinting.</li>
-        <li>I'm the eldest of four in my family</li>
-        <li>My favorite genre of movies/tv shows is sci-fi. I'm currently watching the Stargate Atlantis, the third and last (so far) show of the Stargate series</li>
-    </ul>
-    <h2>How I spend my days this summer:</h2>
-    <div id="chart-div"></div>
-    <p id="chart-comment">These are the things that I make sure to dedicate time to doing everyday!</p>
-    
+      working as a Google STEP intern this summer. I was raised in Imo State, Nigeria, and moved to the 
+      United States with my family when I was 10. I've always loved being surrounded by and 
+      playing with technology, and I'm very excited to continue to do it in this manner this
+      summer.
+    </p>     
 
-    <!-- Comments Section -->
+    <p> In my free time, I love playing videogames, reading, exercising or playing sports,
+      and watching tv shows! I am currently playing the story mode of Red Dead Redemption 2,
+      and it is without a doubt one of the best games I've ever played. On the topic of reading,
+      I am currently reading personal development books, and this week I'm going through "Addicted to
+      the Monkey Mind" by JF Benoist. I love playing soccer and sprinting in track & field. One of
+      my goals for my time at Stanford is to make the track and field team.</p>
+    
+      <p> Thanks for  taking the time to visit my portfolio!</p>
+  </div>
+  
+  <!-- Comments Section -->
     <a id="comments"></a>
     <div class="comments-section">
-        <h1 class="header">Comments</h1>
         <div class="comments-container">
-            <h3>Leave a comment!</h3>
+            <p>Leave a comment!</p>
         <form class = "submission-form" action="/data" method="POST">
             <div>
             <label>Name</label>
@@ -109,8 +100,6 @@
         </div>
         </div>   
     </div>
-  </div>
-  
   
 
 </body>
