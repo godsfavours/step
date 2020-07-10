@@ -8,6 +8,9 @@
 }
 
 html, body {margin: 0; height: 100%; overflow: hidden}
+@media only screen and (max-width: 782px){
+  html, body { overflow: auto;}
+}
 
 /** Navigation Bar **/
 nav {
@@ -165,7 +168,49 @@ span.letter:hover {
 }
 
 /** Games section **/
+.game-section {
+  width: 35%;
+  margin: auto;
+  padding: 100px 0px 0px 0px;
+  height: 100vh;
+  line-height: 1.6;
+}
 
+[data-tab-content] {
+    display: none;
+}
+
+.active[data-tab-content] {
+    display: block;
+}
+
+.tabs {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+.tab {
+    cursor: pointer;
+    padding: 0px 10px 0px 0px;
+    background-color: #101824
+}
+
+.tab.active{
+    background-color: #172233;
+}
+
+.tab:hover {
+    background-color: #1c293d
+}
+
+.tab-content h1,
+.tab-content p {
+    background-color: #172233;
+}
+#pingPongCanvas {
+  background-color: #101824;
+}
 
 /** About section **/
 .about-section {

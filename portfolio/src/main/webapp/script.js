@@ -12,13 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
+
 // Calls functions to fetch the state of the page
 function init() {
     getQuote();
-    getMessages();
-    
+    getGameTabs();
+
     google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+    //google.charts.setOnLoadCallback(drawChart);
 }
 
 function getQuote() {
@@ -27,47 +29,24 @@ function getQuote() {
   });
 }
 
-function getMessages() {
-    var commentListElement = document.getElementById('comment-list');
-    commentListElement.innerHTML = ""; // clear out old comments
 
-    var queryString = '/data?maxComments=' + document.getElementById('max-comments').value;
-    console.log(queryString);
-    fetch(queryString).then(response => response.json()).then((messages) => {
-        messages.forEach((message) => {
-            commentListElement.appendChild(createCommentElement(message));
-        })
-    });
-}
-
-// Creates <li> element containing text
-function createCommentElement(message) {
-    let commentElement = document.createElement('li');
-    commentElement.className = 'comment';
-    commentElement.innerText = message;
-    return commentElement;
-}
-
-
-function drawChart() {
-    fetch('/daily-activities').then(response => response.json())
-        .then((dailyActivities) => {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Activity');
-            data.addColumn('number', 'Hours');
-
-            Object.keys(dailyActivities).forEach((activity) => {
-            data.addRow([activity, dailyActivities[activity]]);
-            });
-
-            var options = {
-                'width':600,
-                'height':500,
-                is3D: true,
-                legend: {position: 'none'}
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('chart-div'));
-            chart.draw(data, options);
+// below handles the tags in the Game section--good practice to separate to new js file?
+function getGameTabs() {
+    const tabs = document.querySelectorAll('[data-tab-target]');
+    const tabContents = document.querySelectorAll('[data-tab-content]')
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = document.querySelector(tab.dataset.tabTarget);
+            // Hide tabs that are showing
+            tabContents.forEach(tabContent => {
+                tabContent.classList.remove('active');
+            })
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            })
+            // Set desired tab to active
+            tab.classList.add('active')
+            target.classList.add('active')
+        });
     });
 }
