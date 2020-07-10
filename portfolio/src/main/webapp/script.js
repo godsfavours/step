@@ -39,7 +39,7 @@ function getMessages() {
     var commentListElement = document.getElementById('comment-list');
     commentListElement.innerHTML = ""; // clear out old comments
 
-    var queryString = '/data?maxComments=' + document.getElementById('max-comments').value;
+    var queryString = '/comments?maxComments=' + document.getElementById('max-comments').value;
     console.log(queryString);
     fetch(queryString).then(response => response.json()).then((messages) => {
         messages.forEach((message) => {

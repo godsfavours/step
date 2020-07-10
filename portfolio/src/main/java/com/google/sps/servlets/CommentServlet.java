@@ -31,8 +31,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime; 
 
 /** Servlet responsible for handling comments **/
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
+@WebServlet("/comments")
+public class CommentServlet extends HttpServlet {
   private DatastoreService datastore;
   
   @Override
