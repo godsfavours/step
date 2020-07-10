@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Games</title> 
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet"> 
+</head>
+<body onload="init_games();">
+  <!-- Navigation Bar -->
+  <div class="container navbar">
+    <nav>
+      <ul class="nav-links">   
+        <li><a href="index.html">Home</a></li>      
+        <li><a href="games.html">Games</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="comments.html">Comments</a></li>
+      </ul>
+    </nav>  
+  </div>
+
+  <!-- Games Section -->
+  <a id="games">
+    <div class="game-section">
+      <div class="game">
+        <h1 class="game-title">Ping Pong</h1>
+        <div class="game-container">
+          <canvas id="pingPongCanvas" width="624" height="351">
+          </canvas>
+          <!--Tabs Section-->
+          <div class="tab-container">
+            <ul class="tabs">
+              <li data-tab-target="#leaderboard-tab" class="active tab">Leaderboard</li>
+              <li data-tab-target="#comments-tab" class="tab">Comments</li>     
+            </ul>
+  
+            <div class="tab-content">
+              <div id="leaderboard-tab" data-tab-content>
+                <h1>Leaderboard</h1>
+                <p>Displaying high scores below...</p>
+              </div>
+              <div id="comments-tab" data-tab-content class="active">
+                <h1>Comments</h1>
+                <p>Leave some comments below!</p>
+              </div>
+            </div>
+  
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </a>
+
+</body>
+</html>

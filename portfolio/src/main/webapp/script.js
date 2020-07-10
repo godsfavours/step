@@ -12,28 +12,55 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-
-// Calls functions to fetch the state of the page
-function init() {
+function init_index() {
     getQuote();
-    getGameTabs();
-
-    google.charts.load('current', {'packages':['corechart']});
-    //google.charts.setOnLoadCallback(drawChart);
 }
 
+function init_games() {
+    getGameTabs();
+}
+
+function init_about() {
+}
+
+function init_comments() {
+    getMessages();
+}
+
+//Retrives quotes stored in resources/quotes.txt to be displayed in index.html
 function getQuote() {
   fetch('/quotes').then(response => response.text()).then((quote) => {
       document.getElementById('quote-container').innerText = quote;
   });
 }
 
+// Retrieves messages stored in datastore to be dislayed on comments.html
+function getMessages() {
+    var commentListElement = document.getElementById('comment-list');
+    commentListElement.innerHTML = ""; // clear out old comments
 
-// below handles the tags in the Game section--good practice to separate to new js file?
+    var queryString = '/data?maxComments=' + document.getElementById('max-comments').value;
+    console.log(queryString);
+    fetch(queryString).then(response => response.json()).then((messages) => {
+        messages.forEach((message) => {
+            commentListElement.appendChild(createCommentElement(message));
+        })
+    });
+}
+
+// Creates <li> element containing text to be used in getMessages()
+function createCommentElement(message) {
+    let commentElement = document.createElement('li');
+    commentElement.className = 'comment';
+    commentElement.innerText = message;
+    return commentElement;
+}
+
+// Handles the Comments and Leaderboard tags in the Game section
 function getGameTabs() {
     const tabs = document.querySelectorAll('[data-tab-target]');
     const tabContents = document.querySelectorAll('[data-tab-content]')
+ 
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const target = document.querySelector(tab.dataset.tabTarget);

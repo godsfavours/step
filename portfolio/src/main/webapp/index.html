@@ -4,132 +4,51 @@
   <meta charset="UTF-8">
   <title>Godsfavour's Portfolio</title> 
   <link rel="stylesheet" href="style.css">
-  <script src="https://www.gstatic.com/charts/loader.js" defer></script>
   <script src="script.js" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet"> 
 </head>
-<body onload="init();">
+<body onload="init_index();">
   <!-- Navigation Bar -->
   <div class="container navbar">
     <nav>
-      
       <ul class="nav-links">   
-        <li><a href="#home">Home</a></li>      
-        <li><a href="#games">Games</a></li>
-        <li><a href="#about">About Me</a></li>
-        <li><a href="#comments">Comments</a></li>
+        <li><a href="index.html">Home</a></li>      
+        <li><a href="games.html">Games</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="comments.html">Comments</a></li>
       </ul>
     </nav>  
   </div>
 
   <!-- Main Section -->
-  <a id="home"></a>
-  <div class="main-info-section">
-    <div id="quote-container"></div>
-    <div class = "textandpicture">
-      <div class="text">
-        <h1>
-          <span class="letter">H</span>
-          <span class="letter">i</span>
-          <span class="letter">,&nbsp</span>
-          <span class="letter"> I</span>
-          <span class="letter">'</span>
-          <span class="letter">m</span>
-          <span class="name">Godsfavour</span>
-        </h1>
-        <p> I am a Google STEP (Student Training in Engineering Program) intern, student,
-          and aspiring software developer. 
-          </p>
-      </div>
-      <img src="resources/images/portrait.png"></img>
-    </div>
-    
-    <div class="links">
-      <ul class="external-links">   
-        <li class = "link"><a href="https://www.linkedin.com/in/godsfavour-simon-7b8838195/">LinkedIn</a></li>      
-        <li class = "link"><a href="https://github.com/godsfavours">GitHub</a></li>
-      </ul> 
-    </div>
-  </div>  
-
-  <!-- Games Section -->
-  <a id="games"></a>
-  <div class="game-section">
-    <div class="game">
-      <h1 class="game-title">Ping Pong</h1>
-      <div class="game-container">
-        <canvas id="pingPongCanvas" width="624" height="351">
-        </canvas>
-        <!--Tabs Section-->
-        <div class="tab-container">
-          <ul class="tabs">
-            <li data-tab-target="#comments" class="active tab">Comments</li>
-            <li data-tab-target="#highscores" class="tab">High Scores</li>
-          </ul>
-
-          <div class="tab-content">
-            <div id="highscores" data-tab-content>
-              <h1>High Scores</h1>
-              <p>Displaying high scores below...</p>
-            </div>
-            <div id="comments" data-tab-content class="active">
-              <h1>Comments</h1>
-              <p>Leave some comments below!</p>
-            </div>
-          </div>
-
+  <a id="home">
+    <div class="main-info-section">
+      <div id="quote-container"></div>
+      <div class = "textandpicture">
+        <div class="text">
+          <h1>
+            <span class="letter">H</span>
+            <span class="letter">i</span>
+            <span class="letter">,&nbsp</span>
+            <span class="letter"> I</span>
+            <span class="letter">'</span>
+            <span class="letter">m</span>
+            <span class="name">Godsfavour</span>
+          </h1>
+          <p> I am a Google STEP (Student Training in Engineering Program) intern, student,
+            and aspiring software developer. 
+            </p>
         </div>
-
+        <img src="resources/images/portrait.png"></img>
       </div>
-    </div>
-  </div>
-
-  <!-- About Section -->
-  <a id="about"></a>
-  <div class="about-section">
-    <h1 class="header">About Me</h1>
-    <p>Hi, I'm Godsfavour Simon. I am an incoming second year student at Stanford University,
-      working as a Google STEP intern this summer. I was raised in Imo State, Nigeria, and moved to the 
-      United States with my family when I was 10. I've always loved being surrounded by and 
-      playing with technology, and I'm very excited to continue to do it in this manner this
-      summer.
-    </p>     
-
-    <p> In my free time, I love playing videogames, reading, exercising or playing sports,
-      and watching tv shows! I am currently playing the story mode of Red Dead Redemption 2,
-      and it is without a doubt one of the best games I've ever played. On the topic of reading,
-      I am currently reading personal development books, and this week I'm going through "Addicted to
-      the Monkey Mind" by JF Benoist. I love playing soccer and sprinting in track & field. One of
-      my goals for my time at Stanford is to make the track and field team.</p>
-    
-      <p> Thanks for  taking the time to visit my portfolio!</p>
-  </div>
-  
-  <!-- Comments Section -->
-    <a id="comments"></a>
-    <div class="comments-section">
-        <div class="comments-container">
-            <p>Leave a comment!</p>
-        <form class = "submission-form" action="/data" method="POST">
-            <div>
-            <label>Name</label>
-            <input type="text" name="user-name">
-            </div>
-            <div>
-            <label>Comment</label>
-            <br/>
-            <textarea name="user-comment"></textarea>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-        <div class="comments-display">
-            <label>Display Comments:</label>
-            <input onchange="getMessages()" type="number" id="max-comments" min="0" max = "20"> 
-            <ul id="comment-list"></ul>   
-        </div>
-        </div>   
-    </div>
-  
-
+      
+      <div class="links">
+        <ul class="external-links">   
+          <li class = "link"><a href="https://www.linkedin.com/in/godsfavour-simon-7b8838195/">LinkedIn</a></li>      
+          <li class = "link"><a href="https://github.com/godsfavours">GitHub</a></li>
+        </ul> 
+      </div>
+    </div>  
+  </a>  
 </body>
 </html>

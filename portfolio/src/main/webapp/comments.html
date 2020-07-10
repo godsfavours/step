@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Comments</title> 
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet"> 
+</head>
+<body onload="init_comments();">
+  <!-- Navigation Bar -->
+  <div class="container navbar">
+    <nav>
+      <ul class="nav-links">   
+        <li><a href="index.html">Home</a></li>      
+        <li><a href="games.html">Games</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="comments.html">Comments</a></li>
+      </ul>
+    </nav>  
+  </div>
+
+   <!-- Comments Section -->
+   <a id="comments">
+    <div class="comments-section">
+      <div class="comments-container">
+          <p>Leave a comment!</p>
+      <form class = "submission-form" action="/data" method="POST">
+          <div>
+          <label>Name</label>
+          <input type="text" name="user-name">
+          </div>
+          <div>
+          <label>Comment</label>
+          <br/>
+          <textarea name="user-comment"></textarea>
+          </div>
+          <button type="submit">Submit</button>
+      </form>
+      <div class="comments-display">
+          <label>Display Comments:</label>
+          <input onchange="getMessages()" type="number" id="max-comments" min="0" max = "20"> 
+          <ul id="comment-list"></ul>   
+      </div>
+      </div>   
+    </div>
+  </a>
+  
+</body>
+</html>

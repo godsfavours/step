@@ -6,11 +6,15 @@
   width: auto;
   background-color: #192538;
 }
-
-html, body {margin: 0; height: 100%; overflow: hidden}
-@media only screen and (max-width: 782px){
-  html, body { overflow: auto;}
+:root {
+  --main-background-color: #192538;
+  --text-color: #ffffffd0;
+  --header-color: #0088a9;
+  --canvas-background-color: #101824;
+  --selected-tab-color: #172233;
 }
+
+
 
 /** Navigation Bar **/
 nav {
@@ -27,17 +31,9 @@ nav {
 nav li a {
   font-weight: 500;
   font-size: 16px;
-  color: #edf0f1;
+  color: var(--text-color);
   text-decoration: none;
 
-}
-
-.logo {
-  color: #edf0f1;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  font-size: 20px;
-  cursor: pointer;
 }
 
 .nav-links {
@@ -52,23 +48,18 @@ nav li a {
 
 .nav-links li a:hover,
 .logo:hover {
-  color: #0088a9;
+  color: var(--header-color);
 }
 
 /** Main section **/
 .main-info-section {
   padding: 5% 0% 0% 0%;
-  height: 93vh;
 }
 
-@media only screen and (max-width: 1200px){
-  .main-info-section { height: 120vh; }
-}
 
 
 #quote-container {
-  padding: 100px 0px 0px 0px;
-  color:white;
+  color:var(--text-color);
   text-align: center;
   font-size: 12px;
   font-style: italic;
@@ -108,7 +99,7 @@ nav li a {
 }
 
 .text h1 {
-  color: white;
+  color: var(--text-color);
   font-size: 60px;
 }
 
@@ -121,15 +112,15 @@ nav li a {
 }
 
 span.name {
-  color: rgb(112, 177, 189);
+  color: var(--header-color);
 }
 
 span.letter:hover {
-  color: rgb(112, 177, 189);
+  color: var(--header-color);
 }
 
 .text p {
-  color:white;
+  color:var(--text-color);
   letter-spacing: 3px;
   word-spacing: 10px;
   font-size: 16px;
@@ -156,7 +147,7 @@ span.letter:hover {
 
 .link a{
   text-decoration: none;
-  color: white;
+  color: var(--text-color);
 }
 
 .link a:hover{
@@ -169,11 +160,22 @@ span.letter:hover {
 
 /** Games section **/
 .game-section {
-  width: 35%;
+  width: 40%;
   margin: auto;
   padding: 100px 0px 0px 0px;
-  height: 100vh;
   line-height: 1.6;
+}
+
+@media only screen and (max-width: 1400px){
+  .game-section{width: 50%;}
+}
+
+@media only screen and (max-width: 1200px){
+  .game-section{width: 70%;}
+}
+
+@media only screen and (max-width: 782px){
+  .game-section{width: 90%;}
 }
 
 [data-tab-content] {
@@ -192,24 +194,24 @@ span.letter:hover {
 
 .tab {
     cursor: pointer;
-    padding: 0px 10px 0px 0px;
-    background-color: #101824
+    padding: 0px 10px 0px 10px;
+    border-radius: 8px 8px 0 0;
+    background-color: var(--canvas-background-color);
 }
 
-.tab.active{
-    background-color: #172233;
-}
-
-.tab:hover {
-    background-color: #1c293d
-}
-
+.tab.active,
+.tab:hover,
 .tab-content h1,
 .tab-content p {
-    background-color: #172233;
+    background-color: var(--selected-tab-color);
 }
+
 #pingPongCanvas {
-  background-color: #101824;
+   background-color: var(--canvas-background-color);
+}
+
+@media only screen and (max-width: 782px){
+  #pingPongCanvas {width: 100%; height: 100%;}
 }
 
 /** About section **/
@@ -217,7 +219,6 @@ span.letter:hover {
   width:  60%;
   margin: auto;
   padding: 100px 0px 0px 0px;
-  height: 100vh;
 }
 
 @media only screen and (max-width: 1200px){
@@ -250,7 +251,6 @@ span.letter:hover {
 /** Comments section **/
 .comments-section {
   padding: 100px 0px 0px 0px;
-  height: 100vh;
   width: 57%;
   margin: auto;
 }
