@@ -15,7 +15,6 @@
 }
 
 
-
 /** Navigation Bar **/
 nav {
   display: flex;
@@ -160,7 +159,7 @@ span.letter:hover {
 
 /** Games section **/
 .game-section {
-  width: 40%;
+  width: 50%;
   margin: auto;
   padding: 100px 0px 0px 0px;
   line-height: 1.6;
@@ -176,6 +175,18 @@ span.letter:hover {
 
 @media only screen and (max-width: 782px){
   .game-section{width: 90%;}
+}
+
+.game-section h1 {
+  color: var(--header-color);
+}
+
+.game-container {
+  display: flex;
+}
+
+@media only screen and (max-width: 1400px){
+  .game-container{flex-direction: column;}
 }
 
 [data-tab-content] {
@@ -199,6 +210,23 @@ span.letter:hover {
     background-color: var(--canvas-background-color);
 }
 
+.tab-container {
+    width: 100%;
+}
+
+.tab-container li {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 1400px){
+  .tab-container{padding: 10px 0px 0px 0px;}
+}
+
+.tab.active,
+.tab:hover {
+  color: var(--header-color);
+}
 .tab.active,
 .tab:hover,
 .tab-content h1,
@@ -206,13 +234,22 @@ span.letter:hover {
     background-color: var(--selected-tab-color);
 }
 
-#pingPongCanvas {
-   background-color: var(--canvas-background-color);
+.tab-content h1,
+.tab-content p {
+  padding: 10px 0px 10px 30px;
 }
 
-@media only screen and (max-width: 782px){
-  #pingPongCanvas {width: 100%; height: 100%;}
+.tab-content h1 {
+  color: var(--text-color);
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 700;
 }
+
+.tab-content p {
+  color: var(--text-color);
+}
+
 
 /** About section **/
 .about-section {
