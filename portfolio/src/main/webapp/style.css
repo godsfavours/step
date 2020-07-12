@@ -197,6 +197,22 @@ span.letter:hover {
     display: block;
 }
 
+#button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 20px;
+  margin: 0 0 10px 0;
+  border-radius: 2em;
+  background-color: rgb(20, 90, 20);
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+#button:hover {
+  background-color: rgb(15, 71, 15);
+}
 .tabs {
   display: flex;
   list-style-type: none;
@@ -211,6 +227,7 @@ span.letter:hover {
 }
 
 .tab-container {
+  padding: 45px 0px 0px 0px;
     width: 100%;
 }
 

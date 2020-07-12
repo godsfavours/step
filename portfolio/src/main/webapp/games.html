@@ -14,6 +14,7 @@
   <script src="resources/pingpong/sketch.js"></script>
   <script src="resources/pingpong/Paddle.js"></script> 
   <script src="resources/pingpong/Ball.js"></script> 
+  <script src="resources/pingpong/Game.js"></script> 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet"> 
 </head>
 <body onload="init_games();">
@@ -36,7 +37,10 @@
         <h1 class="game-title">Ping Pong</h1>
         <div class="game-container">
           
-          <div id="ping-pong-canvas"></div>
+          <div id="ping-pong-canvas">
+            <button id="button">Start Game</button>
+          </div>
+
           <!--Tabs Section-->
           <div class="tab-container">
             <ul class="tabs">

@@ -36,7 +36,6 @@ class Ball {
         if (goingDown) {
             this.ySpeed = -this.ySpeed;
         } 
-        
     }
 
     display() {
@@ -47,7 +46,7 @@ class Ball {
         if (this.x - this.r <= player.x + player.width && this.x > player.x) {
             if (this.isSameHeight(player)) {
                 this.xSpeed = -this.xSpeed;
-                if (this.xSpeed < 10.5) {
+                if (this.xSpeed < 9) {
                     this.xSpeed += 0.5;
                 }
                 console.log(this.xSpeed);
@@ -59,7 +58,7 @@ class Ball {
         if (this.x + this.r >= ai.x && this.x <= ai.x + ai.width) {
             if (this.isSameHeight(ai)) {
               this.xSpeed = -this.xSpeed;
-              if (this.xSpeed > -10.5) {
+              if (this.xSpeed > -9) {
                     this.xSpeed -= 0.5;
                 }
               console.log(this.xSpeed);
