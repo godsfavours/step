@@ -2,125 +2,53 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Web Page</title> 
+  <title>Godsfavour's Portfolio</title> 
   <link rel="stylesheet" href="style.css">
-  <script src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet"> 
 </head>
-<body onload="init();">
+<body onload="init_index();">
   <!-- Navigation Bar -->
   <div class="container navbar">
     <nav>
-      <div class="logo"><h4><a href="#home">My Portfolio</a></h4></div>
       <ul class="nav-links">   
-        <li><a href="#home">Home</a></li>      
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#comments">Comments</a></li>
+        <li><a href="index.html">Home</a></li>      
+        <li><a href="games.html">Games</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="comments.html">Comments</a></li>
       </ul>
     </nav>  
   </div>
 
   <!-- Main Section -->
-  <a id="home"></a>
-  <div class="main-info-section">
-    <div id="quote-container"></div>
-    <div class="text">
-      <h1>
-        <span class="letter">H</span>
-        <span class="letter">i</span>
-        <span class="letter">,&nbsp</span>
-        <span class="letter"> I</span>
-        <span class="letter">'</span>
-        <span class="letter">m</span>
-        <span class="name">Godsfavour</span>
-      </h1>
-      <p> I am a Google STEP (Student Training in Engineering Program) intern, student,
-        and aspiring software developer.  
-      </p>     
-    </div>
-    <div class="links">
-      <ul class="external-links">   
-        <li><a href="https://www.linkedin.com/in/godsfavour-simon-7b8838195/">LinkedIn</a></li>      
-        <li><a href="https://github.com/godsfavours">GitHub</a></li>
-      </ul> 
-    </div>
-  </div>  
-
-  <!-- Projects Section -->
-  <a id="projects"></a>
-  <div class="projects-section">
-    <h1 class="header">My Projects</h1>
-    <p class="msg">View some of my work</p>
-    <div class="projects-list">
-      <a href="#home">
-      <div class="project"> 
-        <h2>Portfolio Website</h2>
-        <p>My introductory project to web development!</p>
-        <img src="resources/images/portfolio-website.png" alt=""></img>
-      </div>
-      </a>
-    </div>
-  </div>
-
-  <!-- About Section -->
-  <a id="about"></a>
-  <div class="about-section">
-    <h1 class="header">About Me</h1>
-    <p>Hi, I'm Godsfavour Simon. I am an incoming second year student at Stanford University,
-      working as a Google STEP intern this summer.</p>
-    <p> I love technology and creating awesome stuff!</p>
-    <h2> Where I'm From</h2>
-    <p>I currently reside in St. Paul, Minnesota</p>
-    <h2>My hobbies</h2>
-    <p>In my free time, I enjoy reading, drawing, programming, working out, and gaming.</p>
-    <h2>My your dream job?</h2>
-    <p>My dream job is one where I create amazing technology that can have a positive 
-      impact on the lives of many people!</p>
-    <h2>Some facts!</h2>
-    <ul>
-        <li>I grew up in Nigeria and moved to the United States with family when I was 10. 
-            It was during this time that my first name was changed to Godsfavour 
-            (it was previously my middle name)</li>
-        <li>I love playing sports. I've been playing soccer my whole life, and I found track and field in high school.
-            One of my goals during college is to make the varsity track and field team for sprinting.</li>
-        <li>I'm the eldest of four in my family</li>
-        <li>My favorite genre of movies/tv shows is sci-fi. I'm currently watching the Stargate Atlantis, the third and last (so far) show of the Stargate series</li>
-    </ul>
-    <h2>How I spend my days this summer:</h2>
-    <div id="chart-div"></div>
-    <p id="chart-comment">These are the things that I make sure to dedicate time to doing everyday!</p>
-    
-
-    <!-- Comments Section -->
-    <a id="comments"></a>
-    <div class="comments-section">
-        <h1 class="header">Comments</h1>
-        <div class="comments-container">
-            <h3>Leave a comment!</h3>
-        <form class = "submission-form" action="/data" method="POST">
-            <div>
-            <label>Name</label>
-            <input type="text" name="user-name">
-            </div>
-            <div>
-            <label>Comment</label>
-            <br/>
-            <textarea name="user-comment"></textarea>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-        <div class="comments-display">
-            <label>Display Comments:</label>
-            <input onchange="getMessages()" type="number" id="max-comments" min="0" max = "20"> 
-            <ul id="comment-list"></ul>   
+  <a id="home">
+    <div class="main-info-section">
+      <div id="quote-container"></div>
+      <div class = "textandpicture">
+        <div class="text">
+          <h1>
+            <span class="letter">H</span>
+            <span class="letter">i</span>
+            <span class="letter">,&nbsp</span>
+            <span class="letter"> I</span>
+            <span class="letter">'</span>
+            <span class="letter">m</span>
+            <span class="name">Godsfavour</span>
+          </h1>
+          <p> I am a Google STEP (Student Training in Engineering Program) intern, student,
+            and aspiring software developer. 
+            </p>
         </div>
-        </div>   
-    </div>
-  </div>
-  
-  
-
+        <img src="resources/images/portrait.png"></img>
+      </div>
+      
+      <div class="links">
+        <ul class="external-links">   
+          <li class = "link"><a href="https://www.linkedin.com/in/godsfavour-simon-7b8838195/">LinkedIn</a></li>      
+          <li class = "link"><a href="https://github.com/godsfavours">GitHub</a></li>
+        </ul> 
+      </div>
+    </div>  
+  </a>  
 </body>
 </html>
