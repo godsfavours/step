@@ -24,7 +24,6 @@ nav {
   position: fixed;
   top: 0;
   width: 100%;
-
 }
 
 nav li a {
@@ -32,8 +31,12 @@ nav li a {
   font-size: 16px;
   color: var(--text-color);
   text-decoration: none;
-
 }
+
+@media only screen and (max-width: 782px){
+  nav li a { font-size: 12px; }
+}
+
 
 .nav-links {
   list-style: none; /* remove bullet points */
@@ -51,21 +54,25 @@ nav li a {
 }
 
 /** Main section **/
-.main-info-section {
-  padding: 5% 0% 0% 0%;
-}
-
-
 
 #quote-container {
+  padding: 7% 0% 0% 0%;
   color:var(--text-color);
   text-align: center;
   font-size: 12px;
   font-style: italic;
 }
 
+@media only screen and (max-width: 1200px){
+  #quote-container { padding: 10% 0% 0% 0%;}
+}
+
+@media only screen and (max-width: 782px){
+  #quote-container { padding: 20% 0% 0% 0%;}
+}
+
 .textandpicture {
-  padding: 5% 0% 0% 0%;
+  padding: 8% 0% 0% 0%;
   width: 70%;
   margin: auto;
   display: flex;
@@ -94,7 +101,7 @@ nav li a {
 }
 
 @media only screen and (max-width: 782px){
-  .text { padding: 50px 0px 0px 0px; }
+  .text { padding: 50px 0px 0px 0px; text-align: center;}
 }
 
 .text h1 {
@@ -112,6 +119,10 @@ nav li a {
 
 span.name {
   color: var(--header-color);
+}
+
+span.name:hover {
+  color: var(--text-color);
 }
 
 span.letter:hover {
