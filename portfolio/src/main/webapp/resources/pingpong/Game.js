@@ -33,8 +33,7 @@ class Game {
         }
 
         if (this.playerWins || this.aiWins) {
-            
-            let startButton = document.getElementById("button");
+            let startButton = document.getElementById("play-button");
             startButton.click();
         }
     }
@@ -51,11 +50,28 @@ class Game {
         this.aiWins = false;
         ball.reset();
         this.running = true;
+
+        this.preventDefaultKeyBindings(true);
     }
 
     stopGame() {
         console.log("stopping game");
         this.running = false;
+        this.preventDefaultKeyBindings(false);
+    }
+
+    // Prevents the default key actions for arrow keys to avoid page scrolling
+    // while user is playing
+    preventDefaultKeyBindings(bool) {
+        var arrow_keys_handler = function(e) {
+            switch(e.keyCode) {
+                case 37: case 39: case 38:  case 40: // Arrow keys
+                case 32: e.preventDefault(); break; // Space
+                default: break; // do not block other keys
+            }
+        };
+        bool ? window.addEventListener("keydown", arrow_keys_handler, false) :
+        window.removeEventListener("keydown", arrow_keys_handler, false);
     }
 
     addPointToPlayer() {

@@ -17,7 +17,7 @@ function setup() {
     game = new Game(playerPaddle, aiPaddle, ball);
     
     noLoop();
-    let startButton = document.getElementById("button");
+    let startButton = document.getElementById("play-button");
     startButton.onclick = function() {
         startButton.blur();
         game.changeState();
