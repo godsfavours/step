@@ -1,2 +1,0 @@
-This game was created following the walkthrough at: https://codeheir.com/2019/02/04/how-to-code-pong-1972-1/. Basic movement logic for the paddles and ball
-as well as the file setup are the same, and I've added some new features like boosting and plan to add a lot more!
