@@ -14,6 +14,7 @@
   <script src="resources/pingpong/sketch.js"></script>
   <script src="resources/pingpong/Paddle.js"></script> 
   <script src="resources/pingpong/Ball.js"></script> 
+  <script src="resources/pingpong/Game.js"></script> 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet"> 
 </head>
 <body onload="init_games();">
@@ -32,11 +33,22 @@
   <!-- Games Section -->
   <a id="games">
     <div class="game-section">
+      <div class="game-section-header">
+          <h1>Games</h1>
+          <p>Play some of the games I've made, leave comments, and challenge yourself
+               and other players by making it to the top of the leaderboards!
+          </p>
+          <p id="game-login-text">Please log in to play games!</p>
+          <a id="game-login-button">Log In</a>
+      </div>
       <div class="game">
         <h1 class="game-title">Ping Pong</h1>
         <div class="game-container">
           
-          <div id="ping-pong-canvas"></div>
+          <div id="ping-pong-canvas">
+            <button id="play-button">Start Game</button>
+          </div>
+
           <!--Tabs Section-->
           <div class="tab-container">
             <ul class="tabs">

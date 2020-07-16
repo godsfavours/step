@@ -17,7 +17,60 @@ function init_index() {
 }
 
 function init_games() {
+    getLogin();
     getGameTabs();
+}
+
+function getLogin() {
+    var loginButton = document.getElementById('game-login-button');
+    var loginText = document.getElementById('game-login-text');
+
+    fetch('/login').then(response => response.text()).then((response) => {
+      var responseSplit = response.split("\n");
+      var message = responseSplit[0];
+      var url = responseSplit[1];
+      console.log(url);
+      console.log(message + "  " + url);
+      loginButton.href = url;
+      loginText.innerText = message;
+
+      if (message.charAt(0) == "H") {
+          gamePlayable(true);
+          loginButton.innerText = "Log out";
+      } else {
+          gamePlayable(false);
+          loginButton.innerText = "Login";
+      }
+    });
+}
+
+function gamePlayable(bool) {
+    var playButtons = document.querySelectorAll('#play-button');
+    playButtons.forEach((button) => {
+        console.log("disabling button");
+        bool ? button.style.display = "block" : button.style.display = "none";
+    })
+}
+// Handles the Comments and Leaderboard tags in the Game section
+function getGameTabs() {
+    const tabs = document.querySelectorAll('[data-tab-target]');
+    const tabContents = document.querySelectorAll('[data-tab-content]')
+ 
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = document.querySelector(tab.dataset.tabTarget);
+            // Hide tabs that are showing
+            tabContents.forEach(tabContent => {
+                tabContent.classList.remove('active');
+            })
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            })
+            // Set desired tab to active
+            tab.classList.add('active')
+            target.classList.add('active')
+        });
+    });
 }
 
 function init_about() {
@@ -54,26 +107,4 @@ function createCommentElement(message) {
     commentElement.className = 'comment';
     commentElement.innerText = message;
     return commentElement;
-}
-
-// Handles the Comments and Leaderboard tags in the Game section
-function getGameTabs() {
-    const tabs = document.querySelectorAll('[data-tab-target]');
-    const tabContents = document.querySelectorAll('[data-tab-content]')
- 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const target = document.querySelector(tab.dataset.tabTarget);
-            // Hide tabs that are showing
-            tabContents.forEach(tabContent => {
-                tabContent.classList.remove('active');
-            })
-            tabs.forEach(tab => {
-                tab.classList.remove('active');
-            })
-            // Set desired tab to active
-            tab.classList.add('active')
-            target.classList.add('active')
-        });
-    });
 }
