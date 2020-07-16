@@ -9,6 +9,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.sound.min.js"></script>
+
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
   
   <script src="script.js" defer></script>
   <script src="resources/pingpong/sketch.js"></script>
@@ -38,7 +40,12 @@
           <p>Play some of the games I've made, leave comments, and challenge yourself
                and other players by making it to the top of the leaderboards!
           </p>
-          <p id="game-login-text">Please log in to play games!</p>
+          <p id="game-login-text">Log in to play games!</p>
+          <form id="nickname-form">
+            <label>Change your nickname:</label>
+            <input id="form-input" type="text" name="newNickName">
+            <button id="form-submit" type="submit">Submit</button>
+          </form>
           <a id="game-login-button">Log In</a>
       </div>
       <div class="game">
@@ -59,7 +66,7 @@
             <div class="tab-content">
               <div id="leaderboard-tab" data-tab-content class="active">
                 <h1>Top Scorers</h1>
-                <p>Displaying high scores below...</p>
+                <div id="chart-container"></div>
               </div>
               <div id="comments-tab" data-tab-content>
                 <h1>Comments</h1>

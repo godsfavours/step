@@ -1,6 +1,6 @@
 class Game {
     constructor(player, ai, ball) {
-        this.POINTS_TO_WIN = 5;
+        this.POINTS_TO_WIN = 2;
 
         this.player = player;
         this.ai = ai;
@@ -12,10 +12,11 @@ class Game {
 
         this.playerScore = 0;
         this.aiScore = 0;
+
+        this.displayText = false;
     }
 
-    update(){
-
+    update() {
         if (this.ball.x < this.ball.r) { // ai scored
             this.addPointToAI();
             console.log("ai scored!");
@@ -23,16 +24,17 @@ class Game {
             this.addPointToPlayer();
             console.log("player scored!");
         }
-
         if (this.aiScore == this.POINTS_TO_WIN) {
             console.log("ai wins!");
             this.aiWins = true;
+            fetch("/user-data?query=post&postType=loggame&game=pong&result=lose");
         } else if (this.playerScore == this.POINTS_TO_WIN) {
             console.log("player wins");
             this.playerWins = true;
+            fetch("/user-data?query=post&postType=loggame&game=pong&result=win");
         }
-
-        if (this.playerWins || this.aiWins) {
+        if (this.playerWins || this.aiWins) { 
+            this.displayText = true;
             let startButton = document.getElementById("play-button");
             startButton.click();
         }
@@ -43,11 +45,12 @@ class Game {
     }
 
     startGame() {
-        console.log("starting game");
+        getLeaderboard();
         this.playerScore = 0;
         this.aiScore = 0;
         this.playerWins = false;
         this.aiWins = false;
+        this.displayText = false;
         ball.reset();
         this.running = true;
 
@@ -55,7 +58,9 @@ class Game {
     }
 
     stopGame() {
-        console.log("stopping game");
+        if (!(this.playerWins || this.aiWins)) {
+            fetch("/user-data?query=post&postType=loggame&game=pong&result=lose");
+        }
         this.running = false;
         this.preventDefaultKeyBindings(false);
     }
@@ -83,4 +88,5 @@ class Game {
         this.aiScore += 1;
         console.log(this.aiScore);
     }
+
 }

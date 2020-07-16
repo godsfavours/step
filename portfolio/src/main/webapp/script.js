@@ -19,36 +19,50 @@ function init_index() {
 function init_games() {
     getLogin();
     getGameTabs();
+
+    google.charts.load('current', {'packages':['table']});
+    google.charts.setOnLoadCallback(getLeaderboard);
+    getLeaderboard();
 }
 
 function getLogin() {
     var loginButton = document.getElementById('game-login-button');
     var loginText = document.getElementById('game-login-text');
+    var nameForm = document.getElementById('nickname-form');
+    var nameFormButton = document.getElementById('form-submit');
+    var nameFormInput = document.getElementById('form-input');
 
-    fetch('/login').then(response => response.text()).then((response) => {
-      var responseSplit = response.split("\n");
-      var message = responseSplit[0];
-      var url = responseSplit[1];
-      console.log(url);
-      console.log(message + "  " + url);
+    fetch('/user-data?query=get&getType=login').then(response => response.json()).then((response) => {
+      var message = (response.loggedIn == "true") ? "Hello, " + response.nickname + ". Enjoy the games!" : "Please log in to play the games!";
+      var url = response.returnUrl;
+
       loginButton.href = url;
       loginText.innerText = message;
 
-      if (message.charAt(0) == "H") {
-          gamePlayable(true);
+      if (response.loggedIn == "true") {
+          showPlayButtons(true);
           loginButton.innerText = "Log out";
+          nameForm.style.display = "block";
       } else {
-          gamePlayable(false);
+          showPlayButtons(false);
           loginButton.innerText = "Login";
+          nameForm.style.display = "none";
       }
+
+      nameFormButton.addEventListener("click", function() {
+          if (nameFormInput.value.length != 0) {
+              let queryString = "/user-data?query=post&postType=nickname&newNickName=" + nameFormInput.value;
+              fetch(queryString);
+          }    
+      });
     });
 }
 
-function gamePlayable(bool) {
+function showPlayButtons(gamesPlayable) {
     var playButtons = document.querySelectorAll('#play-button');
     playButtons.forEach((button) => {
         console.log("disabling button");
-        bool ? button.style.display = "block" : button.style.display = "none";
+        gamesPlayable ? button.style.display = "block" : button.style.display = "none";
     })
 }
 // Handles the Comments and Leaderboard tags in the Game section
@@ -71,6 +85,28 @@ function getGameTabs() {
             target.classList.add('active')
         });
     });
+}
+
+function getLeaderboard() {  
+    fetch('/leaderboards').then(response => response.json())
+    .then((highestStreaks) => {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Player');
+    data.addColumn('number', 'Longest Win Streak');
+    Object.keys(highestStreaks).forEach((player) => {
+      data.addRow([player, highestStreaks[player]]);
+    });
+
+    const options = {
+      width: '100%',
+      height: '100%',
+      showRowNumber: true,
+      sort: 'disable'
+    };
+
+    const table = new google.visualization.Table(document.getElementById('chart-container'));
+    table.draw(data, {options});
+  });
 }
 
 function init_about() {
