@@ -17,8 +17,9 @@ package com.google.sps;
 import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.HashSet;
-
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Iterator;
 
 
 public final class FindMeetingQuery {
@@ -38,69 +39,86 @@ public final class FindMeetingQuery {
         availableTimes.add(TimeRange.WHOLE_DAY);
         
         // If the set of attendees is empty, the entire day is available
-        if (request.getAttendees().isEmpty()) {
+        if (request.getAttendees().isEmpty() && request.getOptionalAttendees().isEmpty()) {
             return availableTimes;
         }
 
-        // Loop through the attendees in MeetingRequest to find events that they're in
         Collection<String> attendees = request.getAttendees();
-        Set<Event> eventsSet = new HashSet<Event>(events);
-        for (String attendee : attendees) {
-            System.out.println("Attendee: " + attendees);
-            for (Event event : eventsSet) {
-                Collection<String> eventAttendees = event.getAttendees();
-                if (eventAttendees.contains(attendee)) {
-                    System.out.println("Event attendees: " + eventAttendees.toString());
-                    //eventsSet.remove(event);
-                    TimeRange timeRange = event.getWhen();
-                    System.out.println("Event when: " + timeRange.toString());
-                    blockTimeRange(timeRange, request.getDuration());
-                    System.out.println("New available times: " + availableTimes.toString());
-                  
-                }
-                
-            }
+        Collection<String> optionalAttendees = request.getOptionalAttendees();
 
+        // Boolean: mandatoryAttendee
+        Map<String, Boolean> attendeesMap = new HashMap<String, Boolean>();
+        for (String attendee : attendees) { 
+            attendeesMap.put(attendee, true); 
         }
-        
+        for (String attendee : optionalAttendees) { 
+            attendeesMap.put(attendee, false); 
+        }
 
-        
+        System.out.println(attendeesMap.toString());
+
+        /* Events stored in Map to allow to dynamically remove events in loop (so as not to 
+           work on the same event that is shared by multiple attendees) */
+        Map<Event, Boolean> eventsMap = new HashMap<Event, Boolean>();
+        for (Event event : events) { 
+            eventsMap.put(event, true); 
+        }
+
+        Iterator eventsIterator; 
+        for (Map.Entry<String, Boolean> attendeeEntry : attendeesMap.entrySet()) {
+            String attendee = attendeeEntry.getKey();
+
+            eventsIterator = eventsMap.entrySet().iterator();
+            while(eventsIterator.hasNext()) {
+
+                Map.Entry pair = (Map.Entry) eventsIterator.next();
+                if ((Boolean) pair.getValue()) {
+                    Event event = (Event) pair.getKey();
+
+                    Collection<String> eventAttendees = event.getAttendees();
+                    if (eventAttendees.contains(attendee)) {
+                        TimeRange timeRange = event.getWhen();
+                        blockTimeRange(timeRange, request.getDuration(), attendeeEntry.getValue());
+
+                        if (attendeeEntry.getValue()) {
+                            eventsIterator.remove();
+                        }      
+                        // If there are only optional attendees & no times are available for them
+                        if (!attendeeEntry.getValue() && availableTimes.isEmpty()) {
+                            availableTimes.add(TimeRange.WHOLE_DAY);
+                        }
+                    }
+                } 
+            }
+        } 
         return availableTimes;
     }
 
-    // Binary search function to find the TimeRange object to split
-    public void blockTimeRange(TimeRange blockedTimeRange, long meetingDuration) {
-        System.out.println("Blocking time... ");
+    public void blockTimeRange(TimeRange blockedTimeRange, long meetingDuration, boolean mandatory) {
         for (int i = 0; i < availableTimes.size(); i++) {
             TimeRange timeRange = availableTimes.get(i);
+
+            if ((blockedTimeRange.equals(TimeRange.WHOLE_DAY) && !mandatory) 
+                || blockedTimeRange.duration() < meetingDuration) return;
+
             if (timeRange.overlaps(blockedTimeRange)) {
-                if (blockedTimeRange.contains(timeRange)) {
-                    availableTimes.remove(timeRange);
-                    return;
-                }
+
+                TimeRange newTimeRange1 = TimeRange.fromStartEnd(timeRange.start(), 
+                                                blockedTimeRange.start(), false);
+                TimeRange newTimeRange2 = TimeRange.fromStartEnd(blockedTimeRange.end(), 
+                                                timeRange.end(), false);      
                 /*
-                             |--blocked--|
-                          |-----timeRange----|
+                            |--blocked--|
+                        |-----timeRange----|
                 */
-                else if (timeRange.contains(blockedTimeRange)) {
+                if (timeRange.contains(blockedTimeRange)) {
                     System.out.println(timeRange.toString() + " contains " + blockedTimeRange.toString());
                     if (blockedTimeRange.start() != timeRange.start()) {
-                        TimeRange newTimeRange1 = TimeRange.fromStartEnd(timeRange.start(), 
-                                                blockedTimeRange.start(), false);
-                        if (newTimeRange1.duration() >= meetingDuration) {
-                            availableTimes.add(i, newTimeRange1);
-                        }
+                        createNewTimeRange(i, meetingDuration, newTimeRange1);
                     }
                     if (blockedTimeRange.end() != timeRange.end()) {
-                         TimeRange newTimeRange2 = TimeRange.fromStartEnd(blockedTimeRange.end(), 
-                                                timeRange.end(), false);
-                        if (newTimeRange2.duration() >= meetingDuration) {
-                            availableTimes.add(i + 1, newTimeRange2);
-                        }
-                    }    
-                    availableTimes.remove(timeRange);
-                    return;
-
+                        createNewTimeRange(i + 1, meetingDuration, newTimeRange2);
+                    }        
                 }
                 /*
                             |--blocked--|
@@ -108,33 +126,25 @@ public final class FindMeetingQuery {
                 */
                 else if (blockedTimeRange.end() > timeRange.end()) {
                     System.out.println(blockedTimeRange.toString() + " overlaps end of " + timeRange.toString());
-                    TimeRange newTimeRange = TimeRange.fromStartEnd(timeRange.start(), 
-                                                blockedTimeRange.start(), false);
-                    if (newTimeRange.duration() >= meetingDuration) {
-                        availableTimes.add(i, newTimeRange);
-                    }
-                    availableTimes.remove(timeRange);
-                    return;
+                    createNewTimeRange(i, meetingDuration, newTimeRange1);    
                 }
                 /*
                     |--blocked--|
                           |--timeRange--|
                 */
                 else if (blockedTimeRange.start() < timeRange.start()) {
-                    System.out.println(blockedTimeRange.toString() + " overlaps front of " + timeRange.toString());
-                    TimeRange newTimeRange = TimeRange.fromStartEnd(blockedTimeRange.end(), 
-                                                timeRange.end(), false);
-                    if (newTimeRange.duration() >= meetingDuration) {
-                        availableTimes.add(i, newTimeRange);
-                    }
-                    availableTimes.remove(timeRange);
-                    return;
+                    System.out.println(blockedTimeRange.toString() + " overlaps start of " + timeRange.toString());
+                    createNewTimeRange(i, meetingDuration, newTimeRange2);              
                 }
+                availableTimes.remove(timeRange);
+                return;
             }
         }
     }
+
+    public void createNewTimeRange(int index, long meetingDuration, TimeRange timeRange) {
+        if (timeRange.duration() >= meetingDuration) {
+            availableTimes.add(index, timeRange);
+        }
+    }
 }
-
-
-
-
