@@ -173,6 +173,7 @@ span.letter:hover {
   margin: auto;
   padding: 100px 0px 0px 0px;
   line-height: 1.6;
+  height: 200vh;
 }
 
 @media only screen and (max-width: 1400px){
@@ -197,8 +198,22 @@ span.letter:hover {
   padding: 20px 0 20px 0;
 }
 
+#nickname-form label {
+    color: var(--text-color);
+}
+
+#nickname-form input {
+    outline: none;
+    background-color: var(--text-color);
+    color: black;
+    padding: 4px 10px;
+    border: 1px solid;
+    border-radius: 2em;
+}
+
 .game-section button,
-#game-login-button {
+#game-login-button,
+#nickname-form button {
   text-decoration: none;
   border: none;
   outline: none;
@@ -210,11 +225,14 @@ span.letter:hover {
   color: var(--text-color);
   font-weight: 600;
 }
-#game-login-button {
+
+#game-login-button,
+#nickname-form button {
   background-color: var(--header-color);
 }
 
-#game-login-button:hover {
+#game-login-button:hover,
+#nickname-form button:hover {
   background-color: #005368;
 }
 
@@ -261,7 +279,7 @@ span.letter:hover {
 
 .tab-container {
   padding: 45px 0px 0px 0px;
-  width: 100%;
+  /**width: 100%;**/
 }
 
 .tab-container li {
@@ -269,19 +287,22 @@ span.letter:hover {
   font-weight: 600;
 }
 
-@media only screen and (max-width: 1400px){
-  .tab-container{padding: 10px 0px 0px 0px;}
-}
-
 .tab.active,
 .tab:hover {
   color: var(--text-color);
 }
+
 .tab.active,
 .tab:hover,
 .tab-content h1,
 .tab-content p {
     background-color: var(--selected-tab-color);
+}
+
+.tab-content {
+    height: 100%;
+    width: 100%;
+    align-items: center;
 }
 
 .tab-content h1,

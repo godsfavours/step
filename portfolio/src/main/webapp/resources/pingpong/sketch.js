@@ -65,7 +65,7 @@ function draw() {
         text(game.aiScore, width / 2 + 299, 40)  
     }
     
-    if (!game.running) {
+    if (game.displayText) {
         textSize(40);
         if (game.aiWins) {
             fill('rgb(150,30,30)');
@@ -73,6 +73,14 @@ function draw() {
         } else if (game.playerWins) {
             fill('rgb(20,90,20)');
             text('You Win!', width / 2, 190);
+            //fetch("/user-data?query=get&getType=property&propertyName=winStreak&gameEntity=PingPongEntity")
+            //.then(response => response.text()).then((winStreak) => {
+            //    textSize(20);
+            //    fill(255);
+            //    var winStreakNumber = Number(winStreak);
+            //    winStreakNumber = winStreakNumber;
+            //    text('Your current win streak: ' + winStreakNumber, width / 2, 230);
+            //});  
         }   
     }
 }
@@ -98,7 +106,6 @@ function keyReleased() {
     if (key == ' ') {
         playerPaddle.movingFaster = false;
     }
-   
 }
 
 // if ball is above middle of paddle, go up; down if below
@@ -111,6 +118,5 @@ function processAI() {
       } else {
         aiPaddle.movingDown = true;
         aiPaddle.movingUp = false;
-     
       }
 }
