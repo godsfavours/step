@@ -1,1 +1,1 @@
-This repo contains Godsfavour's portfolio and STEP projects.
+First portfolio project
